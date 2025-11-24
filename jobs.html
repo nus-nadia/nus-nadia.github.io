@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jobs - NADIA</title>
+    <link rel="icon" type="image/png" href="/icons/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/icons/favicon.svg" />
+    <link rel="shortcut icon" href="/icons/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="NADIA" />
+    <link rel="manifest" href="/icons/site.webmanifest" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="jobs.js"></script>
+    <style>
+        .nav-link:hover {
+            color: #3b82f6;
+            transition: all 0.3s ease;
+        }
+        .publication-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+    </style>
+</head>
+<body class="font-sans bg-gray-50">
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-white shadow-md z-50">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html"><img src="nadia.png" alt="NADIA Logo" class="h-10"></a>
+            <div class="hidden md:flex space-x-8">
+                <a href="about.html" class="nav-link text-gray-700 hover:text-blue-500">About</a>
+                <a href="people.html" class="nav-link text-gray-700 hover:text-blue-500">People</a>
+                <a href="publications.html" class="nav-link text-gray-700 hover:text-blue-500">Publications</a>
+                <a href="outreach.html" class="nav-link text-gray-700 hover:text-blue-500">Outreach</a>
+                <a href="jobs.html" class="nav-link text-blue-600 font-medium">Jobs</a>
+            </div>
+            <button class="md:hidden focus:outline-none">
+                <i data-feather="menu"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="pt-32 pb-20 bg-gradient-to-r from-blue-900 to-indigo-900 text-white">
+        <div class="container mx-auto px-6">
+            <h1 class="text-4xl md:text-5xl font-bold mb-6" data-aos="fade-right">Jobs</h1>
+            <p class="text-xl max-w-3xl" data-aos="fade-right" data-aos-delay="200">We're looking for next generation astrophysicists to further our understanding.</p>
+        </div>
+    </div>
+
+    <!-- Job Filters -->
+    <section class="py-12 bg-white border-b">
+
+    <div class="container mx-auto px-6">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+            <div class="mb-4 md:mb-0">
+                <h2 class="text-2xl font-bold" data-aos="fade-right">Job Opportunities</h2>
+            </div>
+            <div class="flex space-x-4 items-center" data-aos="fade-left">
+                <select id="qualificationFilter" class="bg-gray-100 border border-gray-300 text-gray-700 py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <option value="all">All</option>
+                </select>
+
+                <select id="topicFilter" multiple class="bg-gray-100 border border-gray-300 text-gray-700 py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </select>
+
+                <button id="resetFilters" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">Reset Filters</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+    <!-- Job List -->
+    <section id="jobs" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="space-y-8" id="job-list">
+                <!-- Publications will be injected here -->
+            </div>
+            <!-- Pagination -->
+            <div class="pagination-container flex justify-center items-center flex-wrap gap-2 mt-10">
+                <button id="prevPage" class="bg-gray-200 px-3 py-2 rounded hover:bg-gray-300 flex items-center space-x-1">
+                    <i data-feather="chevron-left"></i><span>Prev</span>
+                </button>
+                <div id="pageNumbers" class="flex flex-wrap justify-center gap-2"></div>
+                <button id="nextPage" class="bg-gray-200 px-3 py-2 rounded hover:bg-gray-300 flex items-center space-x-1">
+                    <span>Next</span><i data-feather="chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">NADIA</h3>
+                    <p class="text-gray-400">NUS AI and Data Science In Astronomy Research Group</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="about.html" class="text-gray-400 hover:text-white">About</a></li>
+                        <li><a href="people.html" class="text-gray-400 hover:text-white">People</a></li>
+                        <li><a href="publications.html" class="text-gray-400 hover:text-white">Publications</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Connect</h4>
+                    <ul class="space-y-2">
+                        <li><a href="outreach.html" class="text-gray-400 hover:text-white">Outreach</a></li>
+                        <li><a href="jobs.html" class="text-gray-400 hover:text-white">Job Opportunities</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Contact</h4>
+                    <address class="text-gray-400 not-italic">
+                        Department of Physics<br>
+                        National University of Singapore<br>
+                        Science Drive 4, Singapore 119077<br>
+                        <a href="mailto:nadia@nus.edu.sg" class="hover:text-white">nadia@nus.edu.sg</a>
+                    </address>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-10 pt-6 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 text-sm">© 2025 NADIA Research Group. All rights reserved.</p>
+                <div class="flex space-x-4 mt-4 md:mt-0">
+                    <a href="#" class="text-gray-400 hover:text-white"><i data-feather="twitter"></i></a>
+                    <a href="https://github.com/nus-nadia" class="text-gray-400 hover:text-white"><i data-feather="github"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white"><i data-feather="linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            AOS.init();
+            feather.replace();
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title id="pageTitle">Profile</title>
+  <link rel="icon" type="image/png" href="/icons/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/icons/favicon.svg" />
+  <link rel="shortcut icon" href="/icons/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png" />
+  <meta name="apple-mobile-web-app-title" content="NADIA" />
+  <link rel="manifest" href="/icons/site.webmanifest" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+
+  <style>
+    body { background: #071021; color: #e6eef8; font-family: Inter, system-ui, sans-serif; padding-top: 80px; }
+    .card { background: rgba(255,255,255,0.04); backdrop-filter: blur(6px); border-radius: 16px; padding: 24px; box-shadow: 0 8px 30px rgba(2,6,23,0.6); }
+    .avatar { width: 100%; height: 320px; border-radius: 12px; overflow: hidden; position: relative; display: flex; align-items: flex-end; justify-content: flex-start; padding: 12px; background: #061026; }
+    .avatar img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s cubic-bezier(.2,.9,.3,1); }
+    .avatar:hover img { transform: scale(1.04); }
+    .swoosh { position: absolute; right: -60px; top: -30px; width: 220px; height: 220px; opacity: .12; filter: blur(18px); pointer-events: none; background: radial-gradient(circle at 30% 30%, #7bd389, transparent 40%); }
+    .name { font-size: 20px; font-weight: 700; margin-top: 12px; color: #e6eef8; }
+    .role { color: #9aa6bd; font-weight: 600; margin-top: 6px; }
+    .meta { margin-top: 12px; color: #9aa6bd; font-size: 14px; }
+    .badges { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+    .badge { padding: 8px 10px; border-radius: 10px; background: rgba(255,255,255,0.02); font-weight: 600; font-size: 13px; color: #e6eef8; }
+    .contact { margin-top: 16px; display: flex; gap: 10px; }
+    .contact a { font-weight: 600; color: #9aa6bd; text-decoration: none; }
+    .contact a:hover { color: #7bd389; }
+    section.panel { background: rgba(255,255,255,0.04); backdrop-filter: blur(6px); border-radius: 16px; padding: 26px; box-shadow: 0 10px 40px rgba(3,8,20,0.6); }
+    .section { margin-bottom: 22px; }
+    .section h2 { margin: 0 0 12px 0; font-size: 18px; color: #e6eef8; }
+    .section p { color: #9aa6bd; margin: 0; }
+    .pubs { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px; }
+    .pub { padding: 14px; border-radius: 12px; background: transparent; border: 1px solid rgba(255,255,255,0.03); }
+    .pub a { color: #9eeac9; text-decoration: none; font-weight: 700; }
+    .pub .meta { color: #9aa6bd; font-size: 13px; margin-top: 6px; }
+    .divider { height: 1px; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.03), transparent); margin: 18px 0; border-radius: 2px; }
+  </style>
+</head>
+<body>
+
+  <!-- Tailwind-only Navbar -->
+  <nav class="fixed top-0 left-0 w-full bg-white shadow-md z-50">
+    <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+      <a href="index.html"><img src="../nadia.png" alt="NADIA Logo" class="h-10"></a>
+      <div class="hidden md:flex space-x-8 items-center">
+        <a href="../about.html" class="text-gray-700 hover:text-blue-500">About</a>
+        <a href="../people.html" class="text-blue-600 font-medium">People</a>
+        <a href="publications.html" class="text-gray-700 hover:text-blue-500">Publications</a>
+        <a href="outreach.html" class="text-gray-700 hover:text-blue-500">Outreach</a>
+        <a href="jobs.html" class="text-gray-700 hover:text-blue-500">Jobs</a>
+      </div>
+      <button id="mobileMenuToggle" class="md:hidden focus:outline-none"><i data-feather="menu"></i></button>
+    </div>
+    <div id="mobileMenu" class="md:hidden hidden flex flex-col bg-white border-t border-gray-200 px-6 py-4 space-y-4">
+      <a href="../about.html" class="text-gray-700 hover:text-blue-500">About</a>
+      <a href="../people.html" class="text-blue-600 font-medium">People</a>
+      <a href="publications.html" class="text-gray-700 hover:text-blue-500">Publications</a>
+      <a href="outreach.html" class="text-gray-700 hover:text-blue-500">Outreach</a>
+      <a href="jobs.html" class="text-gray-700 hover:text-blue-500">Jobs</a>
+    </div>
+  </nav>
+
+  <main class="container-main grid grid-cols-1 md:grid-cols-3 gap-7 px-6 max-w-6xl mx-auto mt-12">
+    <!-- Profile Card -->
+    <aside class="card">
+      <div class="avatar">
+        <img id="avatarImg" src="../images/sample-profile.jpg" alt="Profile photo">
+        <div class="swoosh" aria-hidden="true"></div>
+      </div>
+      <div class="name" id="personName">Dr. Priya Patel</div>
+      <div class="role" id="personRole">Postdoctoral Fellow</div>
+      <div class="meta" id="affiliation">NUS — Department of Physics</div>
+      <div class="badges" id="fields"></div>
+      <div class="contact">
+        <a href="#" id="email">Email</a>
+        <a href="#" id="homepage">Website</a>
+      </div>
+    </aside>
+
+    <!-- Profile Details -->
+    <section class="panel col-span-2">
+      <div class="section">
+        <h2>Field of study</h2>
+        <p id="fieldOfStudy"></p>
+      </div>
+      <div class="section">
+        <h2>Interests</h2>
+        <p id="interests"></p>
+      </div>
+      <div class="section">
+        <h2>About / Biography</h2>
+        <p id="bio"></p>
+      </div>
+      <div class="divider" aria-hidden></div>
+      <div class="section">
+        <h2>Selected publications</h2>
+        <ul class="pubs" id="publications"></ul>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // Mobile toggle
+    document.getElementById('mobileMenuToggle').addEventListener('click', function(){
+      const menu = document.getElementById('mobileMenu');
+      menu.classList.toggle('hidden');
+    });
+
+    feather.replace();
+    AOS.init({ once: true });
+
+    // Example data
+    const person = {
+      name: 'Dr. Priya Patel',
+      role: 'Postdoctoral Fellow',
+      affiliation: 'NUS — Department of Physics',
+      photo: '../images/sample-profile.jpg',
+      email: 'mailto:priya.patel@nus.edu.sg',
+      homepage: 'https://example.com',
+      fields: ['Exoplanet detection', 'Machine learning', 'Time-series analysis'],
+      interests: 'Exoplanet detection algorithms for space missions; interpretable ML; Bayesian inference.',
+      bio: 'Priya develops algorithms for small-signal detection in time-series data from space telescopes. Previously PhD at University X. Outside research she likes hiking and analog photography.',
+      publications: [
+        {title: 'Detecting Tiny Transits with CNNs', link:'#', meta: 'Astronomy Journal, 2024 — Patel et al.'},
+        {title: 'Interpretable ML for Stellar Signals', link:'#', meta: 'MNRAS, 2023 — Patel et al.'}
+      ]
+    };
+
+    function populateProfile(p){
+      document.getElementById('personName').textContent = p.name;
+      document.getElementById('personRole').textContent = p.role;
+      document.getElementById('affiliation').textContent = p.affiliation;
+      document.getElementById('avatarImg').src = p.photo;
+      document.getElementById('email').href = p.email; document.getElementById('email').textContent = 'Email';
+      document.getElementById('homepage').href = p.homepage; document.getElementById('homepage').textContent = 'Website';
+      document.getElementById('fieldOfStudy').textContent = p.fields.join(' • ');
+      document.getElementById('interests').textContent = p.interests;
+      document.getElementById('bio').textContent = p.bio;
+
+      const fieldsEl = document.getElementById('fields'); fieldsEl.innerHTML = '';
+      p.fields.forEach(f=>{const b=document.createElement('div');b.className='badge';b.textContent=f;fieldsEl.appendChild(b)});
+
+      const pubsEl = document.getElementById('publications'); pubsEl.innerHTML = '';
+      p.publications.forEach(pub=>{
+        const li=document.createElement('li'); li.className='pub';
+        const title = document.createElement('div'); const a = document.createElement('a'); a.href=pub.link; a.textContent=pub.title; title.appendChild(a);
+        const meta = document.createElement('div'); meta.className='meta'; meta.textContent = pub.meta;
+        li.appendChild(title); li.appendChild(meta); pubsEl.appendChild(li);
+      });
+
+      document.getElementById('pageTitle').textContent = `${p.name} - NADIA`;
+    }
+
+    populateProfile(person);
+  </script>
+</body>
+</html>

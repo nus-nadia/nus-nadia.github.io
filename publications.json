@@ -1,0 +1,47 @@
+[
+  {
+    "title": "Flow-Based Generative Emulation of Grids of Stellar Evolutionary Models",
+    "authors": "Hon, M.; Li, Y.; Ong, J.",
+    "publication_info": "The Astrophysical Journal, 973, 154",
+    "pdf_link": "#",
+    "doi_link": "https://doi.org/10.3847/1538-4357/ad6320",
+    "year": 2024,
+    "tags": ["Machine Learning"]
+  },
+  {
+    "title": "A close-in giant planet escaping engulfment by its star",
+    "authors": "Hon, M.; Huber, D.; Rui, N. Z.; et al.",
+    "publication_info": "Nature, 618, 917",
+    "pdf_link": "#",
+    "doi_link": "https://doi.org/10.1038/s41586-023-06029-0",
+    "year": 2023,
+    "tags": ["Exoplanets", "Exoplanet Discovery"]
+  },
+  {
+    "title": "A ’Quick Look’ at All-Sky Galactic Archeology with TESS: 158,000 Oscillating Red Giants from the MIT Quick-Look Pipeline",
+    "authors": "Hon, M.; Huber, D.; Kuszlewicz, J. S.",
+    "publication_info": "The Astrophysical Journal, 672, A89",
+    "pdf_link": "#",
+    "doi_link": "https://doi.org/10.3847/1538-4357/ac14b1",
+    "year": 2021,
+    "tags": ["Exoplanets", "Exoplanet Discovery"]
+  },
+  {
+    "title": "Detecting Solar-like Oscillations in Red Giants with Deep Learning",
+    "authors": "Hon, M.; Stello, D.; Zinn, J.",
+    "publication_info": "The Astrophysical Journal, 859, 64",
+    "pdf_link": "#",
+    "doi_link": "https://doi.org/10.3847/1538-4357/aabfdb",
+    "year": 2018,
+    "tags": ["Astroseismology", "Machine Learning", "Deep Learning"]
+  },
+  {
+    "title": "Deep learning classification in asteroseismology using an improved neural network: results on 15,000 Kepler red giants and applications to K2 and TESS data",
+    "authors": "Hon, M.; Stello, D.; Yu, J.",
+    "publication_info": "Monthly Notices of the Royal Astronomical Society, 476, 3233",
+    "pdf_link": "#",
+    "doi_link": "#",
+    "year": 2018,
+    "tags": ["Astroseismology", "Machine Learning", "Deep Learning", "Big Data", "Algorithms"]
+  }
+]

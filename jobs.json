@@ -1,0 +1,47 @@
+[
+  {
+    "title": "Research Fellow (Astrophysics/Data Science)",
+    "info_text": "We're looking for postdoctoral researchers with experience in the field of Astroseisemology.",
+    "qualification_text": "PhD in Physics, Data Science, Computer Science, Astronomy, Astrophysics or a related quantitative discipline.",
+    "job_detail_link": "https://careers.nus.edu.sg/job/Research-Fellow-%28AstrophysicsData-Science%29/29918-en_GB",
+    "apply_link": "https://careers.nus.edu.sg/job/Research-Fellow-%28AstrophysicsData-Science%29/29918-en_GB",
+    "qualification": "PhD",
+    "tags": ["Astroseismology", "Machine Learning"]
+  },
+  {
+    "title": "Research Assistant",
+    "info_text": "Working with time-domain astronomy from archival datasets from Kepler, TESS, Gaia.",
+    "qualification_text": "Bachelors in a quantitative discipline.",
+    "job_detail_link": "#",
+    "apply_link": "https://doi.org/10.1038/s41586-023-06029-0",
+    "qualification": "BSc",
+    "tags": ["Exoplanets", "Exoplanet Discovery"]
+  },
+  {
+    "title": "Final Year Project",
+    "info_text": "Open to topics from machine learning to astroseisemology.",
+    "qualification_text": "Final-year students",
+    "job_detail_link": "#",
+    "apply_link": "#",
+    "qualification": "FYP",
+    "tags": ["Machine Learning", "Exoplanets", "Astroseisemology"]
+  },
+  {
+    "title": "Undergraduate Research Project",
+    "info_text": "UROPS students are welcome to suggest project topics.",
+    "qualification_text": "NUS Students",
+    "job_detail_link": "#",
+    "apply_link": "#",
+    "qualification": "Undergraduate",
+    "tags": ["Astroseismology", "Machine Learning", "Deep Learning"]
+  },
+    {
+    "title": "Senior Executive Data Strangler",
+    "info_text": "We’re hiring a fearless Data Strangler to choke the life out of messy datasets and squeeze every last insight out of them. You’ll wrestle rogue spreadsheets, suffocate outliers, and chokehold missing values until they confess their secrets. Bonus points if you do it with dramatic flair and a cape.",
+    "qualification_text": "Proven experience in data analytics and mild intimidation. Expertise in Python, SQL, and powerfully persuasive pivot tables. Ability to breathe life into dead datasets while maintaining a sense of humor. Must own at least one “World’s Best Data Strangler” mug (optional, but highly recommended).",
+    "job_detail_link": "#",
+    "apply_link": "#",
+    "qualification": "Marc Hon",
+    "tags": ["Deep Thinking"]
+  }
+]

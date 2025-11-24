@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - NADIA</title>
+    <link rel="icon" type="image/png" href="/icons/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/icons/favicon.svg" />
+    <link rel="shortcut icon" href="/icons/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="NADIA" />
+    <link rel="manifest" href="/icons/site.webmanifest" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <style>
+        .nav-link:hover {
+            color: #3b82f6;
+            transition: all 0.3s ease;
+        }
+        .research-topic:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+    </style>
+</head>
+<body class="font-sans bg-gray-50">
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-white shadow-md z-50">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html"><img src="Big NADIA.png" alt="NADIA Logo" class="h-10"></a>
+            <div class="hidden md:flex space-x-8">
+                <a href="about.html" class="nav-link text-blue-600 font-medium">About</a>
+                <a href="people.html" class="nav-link text-gray-700 hover:text-blue-500">People</a>
+                <a href="publications.html" class="nav-link text-gray-700 hover:text-blue-500">Publications</a>
+                <a href="outreach.html" class="nav-link text-gray-700 hover:text-blue-500">Outreach</a>
+                <a href="jobs.html" class="nav-link text-gray-700 hover:text-blue-500">Jobs</a>
+            </div>
+            <button class="md:hidden focus:outline-none">
+                <i data-feather="menu"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="pt-32 pb-20 bg-gradient-to-r from-blue-900 to-indigo-900 text-white">
+        <div class="container mx-auto px-6x">
+            <h1 class="text-4xl md:text-5xl font-bold mb-6 text-center" data-aos="fade-right">NUS AI and Data Science and Informatics in Astronomy</h1>
+            <!--<p class="text-xl max-w-3xl" data-aos="fade-right" data-aos-delay="200">The NADIA group combines artificial intelligence and data science with astronomy to discover new frontiers in stellar astrophysics and exoplanet science.</p>-->
+        </div>
+    </div>
+
+    <!-- NADIA naming Statement -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0 md:pr-10" data-aos="fade-right">
+                    <h2 class="text-3xl font-bold mb-6">NADIA</h2>
+                    <p class="text-lg text-gray-600 mb-6">The NADIA group combines artificial intelligence and data science with astronomy to discover new frontiers in stellar astrophysics and exoplanet science.</p>
+                </div>
+                <div class="md:w-1/2" data-aos="fade-left">
+                    <img src="telescope.jpg" alt="Astronomy research" class="rounded-lg shadow-xl w-full">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission Statement -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0 md:pr-10" data-aos="fade-right">
+                    <h2 class="text-3xl font-bold mb-6">Our Mission</h2>
+                    <p class="text-lg text-gray-600 mb-6">To revolutionize our understanding of stars and planetary systems through innovative applications of machine learning and data science to astronomical datasets.</p>
+                    <p class="text-lg text-gray-600">We develop novel computational methods to extract maximum scientific value from current and next-generation astronomical surveys, pushing the boundaries of what's possible in stellar and exoplanetary science.</p>
+                </div>
+                <div class="md:w-1/2" data-aos="fade-left">
+                    <img src="telescope.jpg" alt="Astronomy research" class="rounded-lg shadow-xl w-full">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Research Topics -->
+    <section class="py-20 bg-gray-100">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-16" data-aos="fade-up">Research Interests</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="research-topic bg-white p-6 rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="200">
+                    <div class="text-blue-600 mb-4">
+                        <i data-feather="activity" class="w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Asteroseismology</h3>
+                    <p class="text-gray-600">Listening to the sounds of stars to reveal their interiors.</p>
+                </div>
+                <div class="research-topic bg-white p-6 rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="300">
+                    <div class="text-blue-600 mb-4">
+                        <i data-feather="search" class="w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Exoplanetary Science</h3>
+                    <p class="text-gray-600">Detection and characterization of exoplanets and their atmospheres, using missions like JWST, Roman.</p>
+                </div>
+                <div class="research-topic bg-white p-6 rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="400">
+                    <div class="text-blue-600 mb-4">
+                        <i data-feather="layers" class="w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Galactic Archeology</h3>
+                    <p class="text-gray-600">Piecing together the history of our galaxy with chemical, kinematic, and seismic data.</p>
+                </div>
+                <div class="research-topic bg-white p-6 rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="500">
+                    <div class="text-blue-600 mb-4">
+                        <i data-feather="wind" class="w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Data-Driven Stellar Modelling</h3>
+                    <p class="text-gray-600">Characterizing and mitigating stellar activity signals that complicate exoplanet detection and characterization.</p>
+                </div>
+                <div class="research-topic bg-white p-6 rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="600">
+                    <div class="text-blue-600 mb-4">
+                        <i data-feather="cpu" class="w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Time-Domain Machine Learning</h3>
+                    <p class="text-gray-600">Pioneering applications of convolutional neural networks, transformers, and other architectures to time domain astronomy.</p>
+                </div>
+                <div class="research-topic bg-white p-6 rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="700">
+                    <div class="text-blue-600 mb-4">
+                        <i data-feather="database" class="w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Anomaly Detection</h3>
+                    <p class="text-gray-600">Developing scalable methods to process and analyze the enormous datasets from current and future sky surveys for rogue objects and weird phenomena.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Spacecraft -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-16" data-aos="fade-up">Surveys we are studying</h2>
+            <div class="flex flex-wrap justify-center gap-10">
+                <div class="flex items-center" data-aos="fade-up" data-aos-delay="200">
+                    <img src="logos/TESS.svg" alt="NUS Logo" class="h-16">
+                    <span class="ml-4 text-xl font-semibold">TESS</span>
+                </div>
+                <div class="flex items-center" data-aos="fade-up" data-aos-delay="300">
+                    <img src="logos/NASA_logo.png" alt="NASA Logo" class="h-16">
+                    <span class="ml-4 text-xl font-semibold">Gaia</span>
+                </div>
+                <div class="flex items-center" data-aos="fade-up" data-aos-delay="400">
+                    <img src="logos/MIT_logo.png" alt="MIT Logo" class="h-16">
+                    <span class="ml-4 text-xl font-semibold">Kepler</span>
+                </div>
+                <div class="flex items-center" data-aos="fade-up" data-aos-delay="400">
+                    <img src="logos/MIT_logo.png" alt="MIT Logo" class="h-16">
+                    <span class="ml-4 text-xl font-semibold">Roman</span>
+                </div>
+                <div class="flex items-center" data-aos="fade-up" data-aos-delay="400">
+                    <img src="logos/MIT_logo.png" alt="MIT Logo" class="h-16">
+                    <span class="ml-4 text-xl font-semibold">LSST</span>
+                </div>
+                <div class="flex items-center" data-aos="fade-up" data-aos-delay="400">
+                    <img src="logos/MIT_logo.png" alt="MIT Logo" class="h-16">
+                    <span class="ml-4 text-xl font-semibold">Plato</span>
+                </div>
+                <div class="flex items-center" data-aos="fade-up" data-aos-delay="400">
+                    <img src="logos/MIT_logo.png" alt="MIT Logo" class="h-16">
+                    <span class="ml-4 text-xl font-semibold">CHEOPS</span>
+                </div>
+                <div class="flex items-center" data-aos="fade-up" data-aos-delay="400">
+                    <img src="logos/MIT_logo.png" alt="MIT Logo" class="h-16">
+                    <span class="ml-4 text-xl font-semibold">JWST</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Collaborations -->
+    <section class="py-20 bg-gray-100">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-16" data-aos="fade-up">Collaborations</h2>
+            <div class="flex flex-wrap justify-center gap-10">
+                <div class="flex items-center" data-aos="fade-up" data-aos-delay="200">
+                    <img src="logos/nus-shield.jpg" alt="NUS Logo" class="h-16">
+                    <span class="ml-4 text-xl font-semibold">National University of Singapore</span>
+                </div>
+                <div class="flex items-center" data-aos="fade-up" data-aos-delay="300">
+                    <img src="logos/NASA_logo.png" alt="NASA Logo" class="h-16">
+                    <span class="ml-4 text-xl font-semibold">NASA</span>
+                </div>
+                <div class="flex items-center" data-aos="fade-up" data-aos-delay="400">
+                    <img src="logos/MIT_logo.png" alt="MIT Logo" class="h-16">
+                    <span class="ml-4 text-xl font-semibold">Massachusetts Institute of Technology</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">NADIA</h3>
+                    <p class="text-gray-400">NUS AI and Data Science In Astronomy Research Group</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="about.html" class="text-gray-400 hover:text-white">About</a></li>
+                        <li><a href="people.html" class="text-gray-400 hover:text-white">People</a></li>
+                        <li><a href="publications.html" class="text-gray-400 hover:text-white">Publications</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Connect</h4>
+                    <ul class="space-y-2">
+                        <li><a href="outreach.html" class="text-gray-400 hover:text-white">Outreach</a></li>
+                        <li><a href="jobs.html" class="text-gray-400 hover:text-white">Job Opportunities</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Contact</h4>
+                    <address class="text-gray-400 not-italic">
+                        Department of Physics<br>
+                        National University of Singapore<br>
+                        Science Drive 4, Singapore 119077<br>
+                        <a href="mailto:nadia@nus.edu.sg" class="hover:text-white">nadia@nus.edu.sg</a>
+                    </address>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-10 pt-6 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 text-sm">© 2025 NADIA Research Group. All rights reserved.</p>
+                <div class="flex space-x-4 mt-4 md:mt-0">
+                    <a href="#" class="text-gray-400 hover:text-white"><i data-feather="twitter"></i></a>
+                    <a href="https://github.com/nus-nadia" class="text-gray-400 hover:text-white"><i data-feather="github"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white"><i data-feather="linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>AOS.init();</script>
+    <script>feather.replace();</script>
+</body>
+</html>

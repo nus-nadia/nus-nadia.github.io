@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>People - NADIA</title>
+    <link rel="icon" type="image/png" href="/icons/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/icons/favicon.svg" />
+    <link rel="shortcut icon" href="/icons/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="NADIA" />
+    <link rel="manifest" href="/icons/site.webmanifest" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <style>
+        .nav-link:hover {
+            color: #3b82f6;
+            transition: all 0.3s ease;
+        }
+        .person-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            transition: all 0.3s ease;
+        }
+    </style>
+</head>
+<body class="font-sans bg-gray-50">
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-white shadow-md z-50">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html"><img src="nadia.png" alt="NADIA Logo" class="h-10"></a>
+            <div class="hidden md:flex space-x-8">
+                <a href="about.html" class="nav-link text-gray-700 hover:text-blue-500">About</a>
+                <a href="people.html" class="nav-link text-blue-600 font-medium">People</a>
+                <a href="publications.html" class="nav-link text-gray-700 hover:text-blue-500">Publications</a>
+                <a href="outreach.html" class="nav-link text-gray-700 hover:text-blue-500">Outreach</a>
+                <a href="jobs.html" class="nav-link text-gray-700 hover:text-blue-500">Jobs</a>
+            </div>
+            <button class="md:hidden focus:outline-none">
+                <i data-feather="menu"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="pt-32 pb-20 bg-gradient-to-r from-blue-900 to-indigo-900 text-white">
+        <div class="container mx-auto px-6">
+            <h1 class="text-4xl md:text-5xl font-bold mb-6" data-aos="fade-right">Our Team</h1>
+            <p class="text-xl max-w-3xl" data-aos="fade-right" data-aos-delay="200">A diverse group of researchers united by our passion for astronomy, artificial intelligence, and data science.</p>
+        </div>
+    </div>
+
+    <!-- Faculty -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-16" data-aos="fade-up">Faculty Members</h2>
+            <!--<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">-->
+            <div class="flex justify-center">    
+                <div class="person-card bg-gray-50 rounded-xl overflow-hidden shadow-lg w-full max-w-md" data-aos="fade-up" data-aos-delay="200">
+                    <img src="people/MarcHon2.jpg" alt="Prof. Marc Hon" class="w-full h-64 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-2">Prof. Marc Hon</h3>
+                        <p class="text-blue-600 mb-4">Principal Investigator</p>
+                        <p class="text-gray-600 mb-4">Expert in asteroseismology, time-domain astronomy and machine learning. Leads the group's research direction and collaborations.</p>
+                        <a href="https://www.physics.nus.edu.sg/faculty/marc-hon/" class="text-blue-600 hover:underline">View Profile →</a>
+                    </div>
+                </div>
+                <!--
+                <div class="person-card bg-gray-50 rounded-xl overflow-hidden shadow-lg" data-aos="fade-up" data-aos-delay="300">
+                    <img src="http://static.photos/people/640x360/2" alt="Dr. Michael Chen" class="w-full h-64 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-2">Dr. Michael Chen</h3>
+                        <p class="text-blue-600 mb-4">Associate Professor</p>
+                        <p class="text-gray-600 mb-4">Specializes in machine learning applications for exoplanet detection and characterization.</p>
+                        <a href="#" class="text-blue-600 hover:underline">View Profile →</a>
+                    </div>
+                </div>
+                <div class="person-card bg-gray-50 rounded-xl overflow-hidden shadow-lg" data-aos="fade-up" data-aos-delay="400">
+                    <img src="http://static.photos/people/640x360/3" alt="Dr. Aisha Rahman" class="w-full h-64 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-2">Dr. Aisha Rahman</h3>
+                        <p class="text-blue-600 mb-4">Assistant Professor</p>
+                        <p class="text-gray-600 mb-4">Focuses on data-driven stellar modeling and the intersection of astronomy and statistics.</p>
+                        <a href="#" class="text-blue-600 hover:underline">View Profile →</a>
+                    </div>
+                </div>
+                -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Postdocs -->
+    <section class="py-20 bg-gray-100">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-16" data-aos="fade-up">Postdoctoral Researchers</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="person-card bg-white rounded-lg shadow-md p-6" data-aos="fade-up" data-aos-delay="200">
+                    <img src="http://static.photos/people/320x240/1" alt="Dr. David Wilson" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover">
+                    <h3 class="text-xl font-bold text-center mb-2">Dr. David Wilson</h3>
+                    <p class="text-blue-600 text-center mb-3">Postdoctoral Fellow</p>
+                    <p class="text-gray-600 text-center">Developing deep learning methods for asteroseismic analysis.</p>
+                </div>
+                <div class="person-card bg-white rounded-lg shadow-md p-6" data-aos="fade-up" data-aos-delay="300">
+                    <img src="http://static.photos/people/320x240/2" alt="Dr. Priya Patel" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover">
+                    <h3 class="text-xl font-bold text-center mb-2">Dr. Priya Patel</h3>
+                    <p class="text-blue-600 text-center mb-3">Postdoctoral Fellow</p>
+                    <p class="text-gray-600 text-center">Working on exoplanet detection algorithms for space missions.</p>
+                    <a href="people/individual_profile_template.html" class="text-blue-600 hover:underline">View Profile →</a>
+                </div>
+                <div class="person-card bg-white rounded-lg shadow-md p-6" data-aos="fade-up" data-aos-delay="400">
+                    <img src="http://static.photos/people/320x240/3" alt="Dr. Carlos Mendez" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover">
+                    <h3 class="text-xl font-bold text-center mb-2">Dr. Carlos Mendez</h3>
+                    <p class="text-blue-600 text-center mb-3">Postdoctoral Fellow</p>
+                    <p class="text-gray-600 text-center">Researching stellar activity and its impact on exoplanet studies.</p>
+                </div>
+                <div class="person-card bg-white rounded-lg shadow-md p-6" data-aos="fade-up" data-aos-delay="500">
+                    <img src="http://static.photos/people/320x240/4" alt="Dr. Elena Volkova" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover">
+                    <h3 class="text-xl font-bold text-center mb-2">Dr. Elena Volkova</h3>
+                    <p class="text-blue-600 text-center mb-3">Postdoctoral Fellow</p>
+                    <p class="text-gray-600 text-center">Developing Bayesian methods for stellar parameter estimation.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Graduate Students -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-16" data-aos="fade-up">Graduate Students</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="person-card bg-gray-50 rounded-lg p-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="flex items-center mb-4">
+                        <img src="https://avatars.zulip.com/78290/f04a25c4a18cb3fdd075ccbaa8dbb44628eaddc6.png" alt="Rishi Chandramohan" class="w-16 h-16 rounded-full mr-4 object-cover">
+                        <div>
+                            <h3 class="text-lg font-bold">Rishi Chandramohan</h3>
+                            <p class="text-blue-600 text-sm">PhD Candidate</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">Researching neural networks for automated classification of stellar oscillations.</p>
+                </div>
+                <div class="person-card bg-gray-50 rounded-lg p-6" data-aos="fade-up" data-aos-delay="250">
+                    <div class="flex items-center mb-4">
+                        <img src="https://avatars.zulip.com/78290/99e8bcdf82e4d8cf0163b821422979b9fad65d48.png" alt="Matthew Sung" class="w-16 h-16 rounded-full mr-4 object-cover">
+                        <div>
+                            <h3 class="text-lg font-bold">Matthew Sung</h3>
+                            <p class="text-blue-600 text-sm">PhD Candidate</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">Developing novel algorithms for detecting anomalies in transit data.</p>
+                    <a href="people/matthew-sung.html" class="text-blue-600 hover:underline">View Profile →</a>
+                </div>
+                <div class="person-card bg-gray-50 rounded-lg p-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="flex items-center mb-4">
+                        <img src="http://static.photos/people/200x200/3" alt="Lin Yihan" class="w-16 h-16 rounded-full mr-4 object-cover">
+                        <div>
+                            <h3 class="text-lg font-bold">Lin Yihan</h3>
+                            <p class="text-blue-600 text-sm">MSc Student</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">Working on time-series analysis techniques for multi-messenger astronomy.</p>
+                </div>
+                <div class="person-card bg-gray-50 rounded-lg p-6" data-aos="fade-up" data-aos-delay="350">
+                    <div class="flex items-center mb-4">
+                        <img src="http://static.photos/people/200x200/4" alt="Wu Yuzhe" class="w-16 h-16 rounded-full mr-4 object-cover">
+                        <div>
+                            <h3 class="text-lg font-bold">Wu Yuzhe</h3>
+                            <p class="text-blue-600 text-sm">MSc Student</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">Developing interpretable machine learning models for stellar astrophysics.</p>
+                </div>
+                <div class="person-card bg-gray-50 rounded-lg p-6" data-aos="fade-up" data-aos-delay="400">
+                    <div class="flex items-center mb-4">
+                        <img src="http://static.photos/people/200x200/5" alt="Yuxin Wu" class="w-16 h-16 rounded-full mr-4 object-cover">
+                        <div>
+                            <h3 class="text-lg font-bold">Yuxin Wu</h3>
+                            <p class="text-blue-600 text-sm">UROPS Student</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">Applying computer vision techniques to astronomical image analysis.</p>
+                </div>
+                <!--
+                <div class="person-card bg-gray-50 rounded-lg p-6" data-aos="fade-up" data-aos-delay="450">
+                    <div class="flex items-center mb-4">
+                        <img src="http://static.photos/people/200x200/6" alt="Rajesh Kumar" class="w-16 h-16 rounded-full mr-4 object-cover">
+                        <div>
+                            <h3 class="text-lg font-bold">Rajesh Kumar</h3>
+                            <p class="text-blue-600 text-sm">MSc Student</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">Working on scalable algorithms for processing large astronomical datasets.</p>
+                </div>
+                -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Alumni -->
+    <!-- Add this in when we have Alumni!-->
+    <section class="py-20 bg-gray-100">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-16" data-aos="fade-up">Alumni</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="text-center" data-aos="fade-up" data-aos-delay="200">
+                    <p class="font-semibold">Dr. Emily Wong</p>
+                    <p class="text-gray-600 text-sm">Postdoc → Assistant Professor, MIT</p>
+                </div>
+                <div class="text-center" data-aos="fade-up" data-aos-delay="250">
+                    <p class="font-semibold">Dr. Marco Silva</p>
+                    <p class="text-gray-600 text-sm">PhD → Research Scientist, NASA JPL</p>
+                </div>
+                <div class="text-center" data-aos="fade-up" data-aos-delay="300">
+                    <p class="font-semibold">Dr. Li Wei</p>
+                    <p class="text-gray-600 text-sm">PhD → Data Scientist, SpaceX</p>
+                </div>
+                <div class="text-center" data-aos="fade-up" data-aos-delay="350">
+                    <p class="font-semibold">Dr. Sofia Rodriguez</p>
+                    <p class="text-gray-600 text-sm">Postdoc → Research Fellow, ESO</p>
+                </div>
+            </div>
+            <div class="text-center mt-10">
+                <a href="#" class="text-blue-600 font-medium hover:underline">View complete alumni list →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">NADIA</h3>
+                    <p class="text-gray-400">NUS AI and Data Science In Astronomy Research Group</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="about.html" class="text-gray-400 hover:text-white">About</a></li>
+                        <li><a href="people.html" class="text-gray-400 hover:text-white">People</a></li>
+                        <li><a href="publications.html" class="text-gray-400 hover:text-white">Publications</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Connect</h4>
+                    <ul class="space-y-2">
+                        <li><a href="outreach.html" class="text-gray-400 hover:text-white">Outreach</a></li>
+                        <li><a href="jobs.html" class="text-gray-400 hover:text-white">Job Opportunities</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Contact</h4>
+                    <address class="text-gray-400 not-italic">
+                        Department of Physics<br>
+                        National University of Singapore<br>
+                        Science Drive 4, Singapore 119077<br>
+                        <a href="mailto:nadia@nus.edu.sg" class="hover:text-white">nadia@nus.edu.sg</a>
+                    </address>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-10 pt-6 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 text-sm">© 2025 NADIA Research Group. All rights reserved.</p>
+                <div class="flex space-x-4 mt-4 md:mt-0">
+                    <a href="#" class="text-gray-400 hover:text-white"><i data-feather="twitter"></i></a>
+                    <a href="https://github.com/nus-nadia" class="text-gray-400 hover:text-white"><i data-feather="github"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white"><i data-feather="linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>AOS.init();</script>
+    <script>feather.replace();</script>
+</body>
+</html>
