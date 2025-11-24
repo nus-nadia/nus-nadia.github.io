@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title id="pageTitle">Profile</title>
+  <title id="pageTitle">Matthew Sung - NADIA</title>
   <link rel="icon" type="image/png" href="/icons/favicon-96x96.png" sizes="96x96" />
   <link rel="icon" type="image/svg+xml" href="/icons/favicon.svg" />
   <link rel="shortcut icon" href="/icons/favicon.ico" />
@@ -47,22 +47,22 @@
   <!-- Tailwind-only Navbar -->
   <nav class="fixed top-0 left-0 w-full bg-white shadow-md z-50">
     <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-      <a href="index.html"><img src="../nadia.png" alt="NADIA Logo" class="h-10"></a>
+      <a href="/index.html"><img src="/nadia.png" alt="NADIA Logo" class="h-10"></a>
       <div class="hidden md:flex space-x-8 items-center">
-        <a href="../about.html" class="text-gray-700 hover:text-blue-500">About</a>
-        <a href="../people.html" class="text-blue-600 font-medium">People</a>
-        <a href="publications.html" class="text-gray-700 hover:text-blue-500">Publications</a>
-        <a href="outreach.html" class="text-gray-700 hover:text-blue-500">Outreach</a>
-        <a href="jobs.html" class="text-gray-700 hover:text-blue-500">Jobs</a>
+        <a href="/about.html" class="text-gray-700 hover:text-blue-500">About</a>
+        <a href="/people.html" class="text-blue-600 font-medium">People</a>
+        <a href="/publications.html" class="text-gray-700 hover:text-blue-500">Publications</a>
+        <a href="/outreach.html" class="text-gray-700 hover:text-blue-500">Outreach</a>
+        <!--<a href="/jobs.html" class="text-gray-700 hover:text-blue-500">Jobs</a>-->
       </div>
       <button id="mobileMenuToggle" class="md:hidden focus:outline-none"><i data-feather="menu"></i></button>
     </div>
     <div id="mobileMenu" class="md:hidden hidden flex flex-col bg-white border-t border-gray-200 px-6 py-4 space-y-4">
-      <a href="../about.html" class="text-gray-700 hover:text-blue-500">About</a>
-      <a href="../people.html" class="text-blue-600 font-medium">People</a>
-      <a href="publications.html" class="text-gray-700 hover:text-blue-500">Publications</a>
-      <a href="outreach.html" class="text-gray-700 hover:text-blue-500">Outreach</a>
-      <a href="jobs.html" class="text-gray-700 hover:text-blue-500">Jobs</a>
+      <a href="/about.html" class="text-gray-700 hover:text-blue-500">About</a>
+      <a href="/people.html" class="text-blue-600 font-medium">People</a>
+      <a href="/publications.html" class="text-gray-700 hover:text-blue-500">Publications</a>
+      <a href="/outreach.html" class="text-gray-700 hover:text-blue-500">Outreach</a>
+      <!--<a href="/jobs.html" class="text-gray-700 hover:text-blue-500">Jobs</a>-->
     </div>
   </nav>
 
@@ -70,7 +70,7 @@
     <!-- Profile Card -->
     <aside class="card">
       <div class="avatar">
-        <img id="avatarImg" src="../images/sample-profile.jpg" alt="Profile photo">
+        <img id="avatarImg" src="/images/sample-profile.jpg" alt="Profile photo">
         <div class="swoosh" aria-hidden="true"></div>
       </div>
       <div class="name" id="personName">Person Name</div>
@@ -118,7 +118,7 @@
     // Example data
     const person = {
       name: 'Matthew Sung',
-      role: 'PhD Student',
+      role: 'PhD Candidate',
       affiliation: 'NUS — Department of Physics',
       photo: 'MatthewSung.jpg',
       email: 'mailto:matthewsung@nus.edu.sg',
