@@ -2,4 +2,4 @@ resources (dont upload)/
 nus-shield.jpg
 nus_logo_full-vertical.jpg
 .DS_Store
-
+**/*.DS_Store
