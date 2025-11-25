@@ -46,13 +46,29 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <div class="pt-32 pb-20 bg-gradient-to-r from-blue-900 to-indigo-900 text-white">
-        <div class="container mx-auto px-6x">
-            <h1 class="text-4xl md:text-5xl font-bold mb-6 text-center" data-aos="fade-right">NUS AI and Data Science and Informatics in Astronomy</h1>
-            <!--<p class="text-xl max-w-3xl" data-aos="fade-right" data-aos-delay="200">The NADIA group combines artificial intelligence and data science with astronomy to discover new frontiers in stellar astrophysics and exoplanet science.</p>-->
+    <!-- Hero Section
+    <div class="relative bg-gradient-to-r from-blue-900 to-indigo-900 text-white bg-cover bg-center bg-no-repeat flex items-center justify-center h-72"
+          style="background-image: url('images/milkyway.jpg');">
+        <div class="text-center px-6">
+            <h1 class="text-4xl md:text-5xl font-bold" data-aos="fade-right">
+                NUS AI and Data Science and Informatics in Astronomy
+            </h1>
+        </div>
+    </div>-->
+
+    <!-- Hero Section-->
+    <div class="relative bg-gradient-to-r from-blue-900 to-indigo-900 text-white bg-cover bg-center bg-no-repeat pt-32 pb-20"
+         style="background-image: url('images/milkyway.jpg');">
+        <!-- Dark overlay -->
+        <div class="absolute inset-0 bg-black/40"></div> <!-- 40% opacity black overlay -->
+   
+        <div class="container mx-auto px-6 transform translate-y-5">
+            <h1 class="text-4xl md:text-5xl font-bold mb-6 text-center" data-aos="fade-right">
+                NUS AI and Data Science and Informatics in Astronomy
+            </h1>
         </div>
     </div>
+
 
     <!-- NADIA naming Statement -->
     <section class="py-20 bg-white">
@@ -61,6 +77,7 @@
                 <div class="md:w-1/2 mb-10 md:mb-0 md:pr-10" data-aos="fade-right">
                     <h2 class="text-3xl font-bold mb-6">NADIA</h2>
                     <p class="text-lg text-gray-600 mb-6">The NADIA group combines artificial intelligence and data science with astronomy to discover new frontiers in stellar astrophysics and exoplanet science.</p>
+                </div>
                 <div class="md:w-1/2" data-aos="fade-left">
                     <img src="images/telescope.jpg" alt="Astronomy research" class="rounded-lg shadow-xl w-full">
                 </div>
@@ -140,7 +157,7 @@
     <!-- Spacecraft -->
     <section class="py-20 bg-white">
         <div class="container mx-auto px-6">
-            <h2 class="text-3xl font-bold text-center mb-16" data-aos="fade-up">Surveys we are studying</h2>
+            <h2 class="text-3xl font-bold text-center mb-16" data-aos="fade-up">Missions Behind Our Data</h2>
             <div class="flex flex-wrap justify-center gap-10">
                 <div class="flex items-center" data-aos="fade-up" data-aos-delay="200">
                     <img src="logos/TESS.svg" alt="TESS Insignia" class="h-16">
