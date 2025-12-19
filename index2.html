@@ -212,6 +212,7 @@
         });
     </script>
     <script>
+    document.addEventListener("DOMContentLoaded", () => {
         const images = [
             "images/test/1.jpg",
             "images/test/2.jpg",
@@ -220,9 +221,18 @@
             "images/test/5.jpg"
         ];
 
-        const img = document.getElementById("hero-bg");
+        const container = document.getElementById("hero-bg");
+        const img = document.createElement("img");
         const randomIndex = Math.floor(Math.random() * images.length);
         img.src = images[randomIndex];
+        // Make it stretch to fill the container
+        img.style.width = "100%";
+        img.style.height = "100%";
+        img.style.objectFit = "cover"; // fill and crop if needed
+        img.style.display = "block";   // removes any inline spacing
+
+        container.appendChild(img);
+    });
     </script>
 
     <script>AOS.init();</script>
