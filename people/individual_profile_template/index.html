@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title id="pageTitle">Matthew Sung - NADIA</title>
+  <title id="pageTitle">Profile</title>
   <link rel="icon" type="image/png" href="/icons/favicon-96x96.png" sizes="96x96" />
   <link rel="icon" type="image/svg+xml" href="/icons/favicon.svg" />
   <link rel="shortcut icon" href="/icons/favicon.ico" />
@@ -47,22 +47,22 @@
   <!-- Tailwind-only Navbar -->
   <nav class="fixed top-0 left-0 w-full bg-white shadow-md z-50">
     <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-      <a href="/index.html"><img src="/logos/nadia.png" alt="NADIA Logo" class="h-10"></a>
+      <a href="/"><img src="/logos/nadia.png" alt="NADIA Logo" class="h-10"></a>
       <div class="hidden md:flex space-x-8 items-center">
-        <a href="/about.html" class="text-gray-700 hover:text-blue-500">About</a>
-        <a href="/people.html" class="text-blue-600 font-medium">People</a>
-        <a href="/publications.html" class="text-gray-700 hover:text-blue-500">Publications</a>
-        <a href="/outreach.html" class="text-gray-700 hover:text-blue-500">Outreach</a>
-        <!--<a href="/jobs.html" class="text-gray-700 hover:text-blue-500">Jobs</a>-->
+        <a href="/about/" class="text-gray-700 hover:text-blue-500">About</a>
+        <a href="/people/" class="text-blue-600 font-medium">People</a>
+        <a href="/publications/" class="text-gray-700 hover:text-blue-500">Publications</a>
+        <a href="/outreach/" class="text-gray-700 hover:text-blue-500">Outreach</a>
+        <!--<a href="/jobs/" class="text-gray-700 hover:text-blue-500">Jobs</a>-->
       </div>
       <button id="mobileMenuToggle" class="md:hidden focus:outline-none"><i data-feather="menu"></i></button>
     </div>
     <div id="mobileMenu" class="md:hidden hidden flex flex-col bg-white border-t border-gray-200 px-6 py-4 space-y-4">
-      <a href="/about.html" class="text-gray-700 hover:text-blue-500">About</a>
-      <a href="/people.html" class="text-blue-600 font-medium">People</a>
-      <a href="/publications.html" class="text-gray-700 hover:text-blue-500">Publications</a>
-      <a href="/outreach.html" class="text-gray-700 hover:text-blue-500">Outreach</a>
-      <!--<a href="/jobs.html" class="text-gray-700 hover:text-blue-500">Jobs</a>-->
+      <a href="/about/" class="text-gray-700 hover:text-blue-500">About</a>
+      <a href="/people/" class="text-blue-600 font-medium">People</a>
+      <a href="/publications/" class="text-gray-700 hover:text-blue-500">Publications</a>
+      <a href="/outreach/" class="text-gray-700 hover:text-blue-500">Outreach</a>
+      <!--<a href="/jobs/" class="text-gray-700 hover:text-blue-500">Jobs</a>-->
     </div>
   </nav>
 
@@ -73,8 +73,8 @@
         <img id="avatarImg" src="/images/sample-profile.jpg" alt="Profile photo">
         <div class="swoosh" aria-hidden="true"></div>
       </div>
-      <div class="name" id="personName">Person Name</div>
-      <div class="role" id="personRole">Role</div>
+      <div class="name" id="personName">Dr. Priya Patel</div>
+      <div class="role" id="personRole">Postdoctoral Fellow</div>
       <div class="meta" id="affiliation">NUS — Department of Physics</div>
       <div class="badges" id="fields"></div>
       <div class="contact">
@@ -117,16 +117,18 @@
 
     // Example data
     const person = {
-      name: 'Matthew Sung',
-      role: 'PhD Candidate',
+      name: 'Dr. Priya Patel',
+      role: 'Postdoctoral Fellow',
       affiliation: 'NUS — Department of Physics',
-      photo: 'MatthewSung.jpg',
-      email: 'mailto:matthewsung@u.nus.edu',
-      homepage: 'https://sungmatt.com',
+      photo: '/images/sample-profile.jpg',
+      email: 'mailto:priya.patel@nus.edu.sg',
+      homepage: 'https://example.com',
       fields: ['Exoplanet detection', 'Machine learning', 'Time-series analysis'],
-      interests: 'Exoplanet detection algorithms in time series astronomy; interpretable ML.',
-      bio: 'Matthew develops algorithms for anomalous signal detection in time-series data. In time, he hopes that his work will detect planets with possible rings, or disintegrating disk structures. Previously BSc. (Hons) at the National University of Singapore. Outside of research, he enjoys photography, and all things Disney.',
+      interests: 'Exoplanet detection algorithms for space missions; interpretable ML; Bayesian inference.',
+      bio: 'Priya develops algorithms for small-signal detection in time-series data from space telescopes. Previously PhD at University X. Outside research she likes hiking and analog photography.',
       publications: [
+        {title: 'Detecting Tiny Transits with CNNs', link:'#', meta: 'Astronomy Journal, 2024 — Patel et al.'},
+        {title: 'Interpretable ML for Stellar Signals', link:'#', meta: 'MNRAS, 2023 — Patel et al.'}
       ]
     };
 

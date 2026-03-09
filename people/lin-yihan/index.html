@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title id="pageTitle">Rishi - NADIA</title>
+  <title id="pageTitle">NADIA</title>
   <link rel="icon" type="image/png" href="/icons/favicon-96x96.png" sizes="96x96" />
   <link rel="icon" type="image/svg+xml" href="/icons/favicon.svg" />
   <link rel="shortcut icon" href="/icons/favicon.ico" />
@@ -47,22 +47,22 @@
   <!-- Tailwind-only Navbar -->
   <nav class="fixed top-0 left-0 w-full bg-white shadow-md z-50">
     <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-      <a href="/index.html"><img src="/logos/nadia.png" alt="NADIA Logo" class="h-10"></a>
+      <a href="/"><img src="/logos/nadia.png" alt="NADIA Logo" class="h-10"></a>
       <div class="hidden md:flex space-x-8 items-center">
-        <a href="/about.html" class="text-gray-700 hover:text-blue-500">About</a>
-        <a href="/people.html" class="text-blue-600 font-medium">People</a>
-        <a href="/publications.html" class="text-gray-700 hover:text-blue-500">Publications</a>
-        <a href="/outreach.html" class="text-gray-700 hover:text-blue-500">Outreach</a>
-        <!--<a href="/jobs.html" class="text-gray-700 hover:text-blue-500">Jobs</a>-->
+        <a href="/about/" class="text-gray-700 hover:text-blue-500">About</a>
+        <a href="/people/" class="text-blue-600 font-medium">People</a>
+        <a href="/publications/" class="text-gray-700 hover:text-blue-500">Publications</a>
+        <a href="/outreach/" class="text-gray-700 hover:text-blue-500">Outreach</a>
+        <!--<a href="/jobs/" class="text-gray-700 hover:text-blue-500">Jobs</a>-->
       </div>
       <button id="mobileMenuToggle" class="md:hidden focus:outline-none"><i data-feather="menu"></i></button>
     </div>
     <div id="mobileMenu" class="md:hidden hidden flex flex-col bg-white border-t border-gray-200 px-6 py-4 space-y-4">
-      <a href="/about.html" class="text-gray-700 hover:text-blue-500">About</a>
-      <a href="/people.html" class="text-blue-600 font-medium">People</a>
-      <a href="/publications.html" class="text-gray-700 hover:text-blue-500">Publications</a>
-      <a href="/outreach.html" class="text-gray-700 hover:text-blue-500">Outreach</a>
-      <!--<a href="/jobs.html" class="text-gray-700 hover:text-blue-500">Jobs</a>-->
+      <a href="/about/" class="text-gray-700 hover:text-blue-500">About</a>
+      <a href="/people/" class="text-blue-600 font-medium">People</a>
+      <a href="/publications/" class="text-gray-700 hover:text-blue-500">Publications</a>
+      <a href="/outreach/" class="text-gray-700 hover:text-blue-500">Outreach</a>
+      <!--<a href="/jobs/" class="text-gray-700 hover:text-blue-500">Jobs</a>-->
     </div>
   </nav>
 
@@ -116,15 +116,15 @@
     AOS.init({ once: true });
 
     const person = {
-      name: 'Rishi Chandramohan',
-      role: 'PhD Candidate',
+      name: 'Lin Yihan',
+      role: 'MSc Student',
       affiliation: 'NUS — Department of Physics',
-      photo: 'RishiChandramohan.jpg',
-      email: 'mailto:e1498103@u.nus.edu',
+      photo: '../LinYihan.jpg',
+      email: 'mailto:linyihan@u.nus.edu',
       homepage: '#',
-      fields: ['Planetary Systems', 'Exoplanet detection', 'Machine learning', 'Dark Matter Candidates'],
-      interests: 'Applying existing or novel microlensing models on anolmous light curve events with the goal of identifying previously unseen compact objects and uncovering potential dark matter candidates.',
-      bio: 'Rishi\'s work focuses on using gravitational microlensing as a unique, purely gravitational probe of unseen mass in the universe. These non-standard microlensing signatures often arise from compact objects that do not emit light, such as primordial black holes, ultra-dense dark matter clumps, or other unconventional mass distributions. By systematically modelling such events, the goal is to identify and characterise candidate dark objects that may contribute to the dark matter population. Besides research, he enjoyes reading science fiction, playing games and working on his car.',
+      fields: ['Astereoseismology', 'Machine learning', 'Representation Learning'],
+      interests: 'Stellar detection from power-spectrum data; data-driven ML for asteroseismology.',
+      bio: 'Yihan develops machine-learning methods for identifying red giants and analyzing stellar power-spectrum data. His work focuses on contrastive learning and data-driven approaches to better understand stellar oscillations and variability. He aims to improve the detection and characterization of red giants in large astronomical datasets. Outside of research, he enjoys novels, games, and pool.',
       publications: [
       ]
     };
