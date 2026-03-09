@@ -40,9 +40,16 @@
                 <a href="/outreach/" class="nav-link text-gray-700 hover:text-blue-500">Outreach</a>
                 <!--<a href="/jobs/" class="nav-link text-gray-700 hover:text-blue-500">Jobs</a>-->
             </div>
-            <button class="md:hidden focus:outline-none">
+            <button id="mobileMenuToggle" class="md:hidden focus:outline-none">
                 <i data-feather="menu"></i>
             </button>
+        </div>
+        <div id="mobileMenu" class="md:hidden hidden flex flex-col bg-white border-t border-gray-200 px-6 py-4 space-y-4">
+            <a href="/about/" class="text-blue-600 font-medium">About</a>
+            <a href="/people/" class="text-gray-700 hover:text-blue-500">People</a>
+            <a href="/publications/" class="text-gray-700 hover:text-blue-500">Publications</a>
+            <a href="/outreach/" class="text-gray-700 hover:text-blue-500">Outreach</a>
+            <!--<a href="/jobs/" class="text-gray-700 hover:text-blue-500">Jobs</a>-->
         </div>
     </nav>
 
@@ -270,5 +277,10 @@
 
     <script>AOS.init();</script>
     <script>feather.replace();</script>
+    <script>
+        document.getElementById('mobileMenuToggle').addEventListener('click', function() {
+            document.getElementById('mobileMenu').classList.toggle('hidden');
+        });
+    </script>
 </body>
 </html>
