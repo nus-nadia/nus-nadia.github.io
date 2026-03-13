@@ -136,7 +136,37 @@
       ]
     };
 
+    function setMeta(attrName, attrValue, content) {
+      let el = document.querySelector(`meta[${attrName}="${attrValue}"]`);
+      if (!el) {
+        el = document.createElement('meta');
+        el.setAttribute(attrName, attrValue);
+        document.head.appendChild(el);
+      }
+      el.setAttribute('content', content);
+    }
+
+    function setMetaTags(person) {
+      const description = `${person.role} at ${person.affiliation}. Research interests: ${person.fields.join(', ')}.`;
+      const imageUrl = new URL(person.photo, window.location.href).href;
+      const pageUrl = window.location.href;
+      const title = `${person.name} — NADIA`;
+
+      document.title = title;
+      setMeta('name', 'description', description);
+      setMeta('property', 'og:type', 'profile');
+      setMeta('property', 'og:title', title);
+      setMeta('property', 'og:description', description);
+      setMeta('property', 'og:image', imageUrl);
+      setMeta('property', 'og:url', pageUrl);
+      setMeta('name', 'twitter:card', 'summary');
+      setMeta('name', 'twitter:title', title);
+      setMeta('name', 'twitter:description', description);
+      setMeta('name', 'twitter:image', imageUrl);
+    }
+
     function populateProfile(p){
+      setMetaTags(p);
       document.getElementById('personName').textContent = p.name;
       document.getElementById('personRole').textContent = p.role;
       document.getElementById('affiliation').textContent = p.affiliation;
