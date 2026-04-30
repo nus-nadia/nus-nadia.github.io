@@ -16,6 +16,7 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
     <script src="https://unpkg.com/feather-icons"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css">
     <style>
         .nav-link:hover {
             color: #3b82f6;
@@ -121,6 +122,33 @@
         </div>
     </section>
 
+    <!-- Photo Gallery -->
+    <section class="py-20 bg-gray-100">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-16" data-aos="fade-up">Photo Gallery</h2>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                <a href="/images/outreach/20260327_ScienceCenter.jpeg"
+                     class="glightbox block overflow-hidden rounded-lg shadow-md"
+                     data-gallery="outreach"
+                     data-title="Evenings at the Science Centre, Singapore">
+                    <img src="/images/outreach/20260327_ScienceCenter.jpeg"
+                         alt="Image of Marc Hon giving a talk to a large audience, seated in front of a screen"
+                         class="w-full h-48 object-cover hover:scale-105 transition-transform duration-300">
+                <!-- Add a new <a> block below for each photo.
+                     Place image files in /images/outreach-gallery/
+                     Update href, src, alt, and data-title for each. -->
+                <!-- <a href="/images/outreach-gallery/photo1.jpg"
+                     class="glightbox block overflow-hidden rounded-lg shadow-md"
+                     data-gallery="outreach"
+                     data-title="Caption here">
+                    <img src="/images/outreach-gallery/photo1.jpg"
+                         alt="Outreach event"
+                         class="w-full h-48 object-cover hover:scale-105 transition-transform duration-300">
+                </a> -->
+            </div>
+        </div>
+    </section>
+
     <!-- Upcoming Events -->
     <!-- No events yet
     <section class="py-20 bg-gray-100">
@@ -222,6 +250,8 @@
 
     <script>AOS.init();</script>
     <script>feather.replace();</script>
+    <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+    <script>GLightbox({ selector: '.glightbox' });</script>
     <script>
         document.getElementById('mobileMenuToggle').addEventListener('click', function() {
             document.getElementById('mobileMenu').classList.toggle('hidden');
