@@ -73,13 +73,29 @@
             <div class="mb-4 md:mb-0">
                 <h2 class="text-2xl font-bold" data-aos="fade-right">Recent Publications</h2>
             </div>
-            <div class="flex space-x-4 items-center" data-aos="fade-left">
+            <div class="flex flex-wrap gap-3 items-center justify-end" data-aos="fade-left">
+                <input id="searchInput" type="search" placeholder="Search title, authors, tags…"
+                       class="bg-gray-100 border border-gray-300 text-gray-700 py-2 px-4 rounded w-full sm:w-64 focus:outline-none focus:ring-2 focus:ring-blue-500">
+
                 <select id="yearFilter" class="bg-gray-100 border border-gray-300 text-gray-700 py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
                     <option value="all">All Years</option>
                 </select>
 
-                <select id="topicFilter" multiple class="bg-gray-100 border border-gray-300 text-gray-700 py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
-                </select>
+                <!-- Topic filter: a checkbox dropdown, so several topics can be
+                     picked without ctrl/cmd-clicking a native multi-select. -->
+                <div id="topicFilter" class="relative">
+                    <button id="topicFilterToggle" type="button" aria-haspopup="true" aria-expanded="false"
+                            class="flex items-center gap-2 bg-gray-100 border border-gray-300 text-gray-700 py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <span id="topicFilterLabel" class="max-w-[12rem] truncate">All Topics</span>
+                        <svg class="topic-chevron w-4 h-4 shrink-0 transition-transform" viewBox="0 0 24 24" fill="none"
+                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </button>
+                    <div id="topicFilterMenu"
+                         class="hidden absolute right-0 mt-2 w-60 max-h-64 overflow-y-auto bg-white border border-gray-200 rounded shadow-lg z-40 p-2">
+                    </div>
+                </div>
 
                 <button id="resetFilters" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">Reset Filters</button>
             </div>
