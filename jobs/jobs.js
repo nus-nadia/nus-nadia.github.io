@@ -2,6 +2,9 @@ let allJobs = [];
 let filteredJobs = [];
 let currentPage = 1;
 const itemsPerPage = 5;
+// Topic selections live here rather than in the DOM, since the checkboxes are
+// rebuilt whenever the topic list is repopulated.
+const selectedTopics = new Set();
 
 // Load Jobs
 async function loadJobs() {
@@ -121,39 +124,61 @@ function updatePaginationControls() {
     };
 }
 
-// Populate dropdowns
+// Populate the qualification dropdown and the topic checkbox list
 function populateFilterOptions() {
-    const qualifications = [...new Set(allJobs.map(job => job.qualification))].sort((a, b) => b - a);
+    const qualifications = [...new Set(allJobs.map(job => job.qualification))].sort();
     const topics = [...new Set(allJobs.flatMap(job => job.tags))].sort();
 
-    const qualificationFilter = document.getElementById("qualificationFilter");
-    const topicFilter = document.getElementById("topicFilter");
+    document.getElementById("qualificationFilter").innerHTML =
+        `<option value="all">All Qualifications</option>` +
+        qualifications.map(q => `<option value="${q}">${q}</option>`).join("");
 
-    qualificationFilter.innerHTML = `<option value="all">All qualifications</option>` + 
-        qualifications.map(y => `<option value="${y}">${y}</option>`).join("");
+    document.getElementById("topicFilterMenu").innerHTML = topics.map(t => `
+        <label class="flex items-center gap-2 px-2 py-1.5 rounded hover:bg-gray-100 cursor-pointer">
+            <input type="checkbox" class="topic-checkbox h-4 w-4 accent-blue-600" value="${t}">
+            <span class="text-sm text-gray-700">${t}</span>
+        </label>`).join("");
+}
 
-    topicFilter.innerHTML = topics.map(t => `<option value="${t}">${t}</option>`).join("");
+// The button doubles as the summary of what is selected, since the choices are
+// hidden once the dropdown closes.
+function updateTopicFilterLabel() {
+    const label = document.getElementById("topicFilterLabel");
+    if (selectedTopics.size === 0) {
+        label.textContent = "All Topics";
+    } else if (selectedTopics.size === 1) {
+        label.textContent = [...selectedTopics][0];
+    } else {
+        label.textContent = `${selectedTopics.size} topics`;
+    }
 }
 
 // Filtering & search
 function setupFilters() {
     const qualificationFilter = document.getElementById("qualificationFilter");
-    const topicFilter = document.getElementById("topicFilter");
+    const topicWrapper = document.getElementById("topicFilter");
+    const topicToggle = document.getElementById("topicFilterToggle");
+    const topicMenu = document.getElementById("topicFilterMenu");
     const resetBtn = document.getElementById("resetFilters");
     const searchInput = document.getElementById("searchInput");
 
     function applyFilters() {
         const selectedQualification = qualificationFilter.value;
-        const selectedTopics = Array.from(topicFilter.selectedOptions).map(opt => opt.value.toLowerCase());
         const keyword = searchInput.value.trim().toLowerCase();
 
         filteredJobs = allJobs.filter(job => {
-            const matchesQualification = selectedQualification === "all" || job.qualification.toString() === selectedQualification;
-            const matchesTopic = selectedTopics.length === 0 || selectedTopics.some(t => job.tags.map(tag => tag.toLowerCase()).includes(t));
+            const tags = job.tags.map(tag => tag.toLowerCase());
+
+            const matchesQualification = selectedQualification === "all" ||
+                job.qualification.toString() === selectedQualification;
+            // Topics are OR-ed: selecting Machine Learning and Exoplanets shows
+            // jobs carrying either tag, not only those carrying both.
+            const matchesTopic = selectedTopics.size === 0 ||
+                [...selectedTopics].some(t => tags.includes(t.toLowerCase()));
             const matchesKeyword = keyword === "" ||
                 job.title.toLowerCase().includes(keyword) ||
                 job.info_text.toLowerCase().includes(keyword) ||
-                job.tags.some(tag => tag.toLowerCase().includes(keyword));
+                tags.some(tag => tag.includes(keyword));
 
             return matchesQualification && matchesTopic && matchesKeyword;
         });
@@ -162,17 +187,48 @@ function setupFilters() {
         renderJobs();
     }
 
+    function setTopicMenuOpen(open) {
+        topicMenu.classList.toggle("hidden", !open);
+        topicToggle.setAttribute("aria-expanded", open ? "true" : "false");
+        topicToggle.querySelector(".topic-chevron").classList.toggle("rotate-180", open);
+    }
+
+    topicToggle.addEventListener("click", () => {
+        setTopicMenuOpen(topicMenu.classList.contains("hidden"));
+    });
+
+    topicMenu.addEventListener("change", event => {
+        const checkbox = event.target;
+        if (!checkbox.classList.contains("topic-checkbox")) return;
+
+        if (checkbox.checked) {
+            selectedTopics.add(checkbox.value);
+        } else {
+            selectedTopics.delete(checkbox.value);
+        }
+        updateTopicFilterLabel();
+        applyFilters();
+    });
+
+    // The dropdown has no backdrop, so it closes on an outside click or Escape.
+    document.addEventListener("click", event => {
+        if (!topicWrapper.contains(event.target)) setTopicMenuOpen(false);
+    });
+    document.addEventListener("keydown", event => {
+        if (event.key === "Escape") setTopicMenuOpen(false);
+    });
+
     qualificationFilter.addEventListener("change", applyFilters);
-    topicFilter.addEventListener("change", applyFilters);
-    //searchInput.addEventListener("input", applyFilters);
+    searchInput.addEventListener("input", applyFilters);
 
     resetBtn.addEventListener("click", () => {
         qualificationFilter.value = "all";
-        Array.from(topicFilter.options).forEach(opt => (opt.selected = false));
         searchInput.value = "";
-        filteredJobs = [...allJobs];
-        currentPage = 1;
-        renderJobs();
+        selectedTopics.clear();
+        topicMenu.querySelectorAll(".topic-checkbox").forEach(box => (box.checked = false));
+        updateTopicFilterLabel();
+        setTopicMenuOpen(false);
+        applyFilters();
     });
 }
 
