@@ -128,9 +128,14 @@ A dry run writes nothing and is the right way to sanity-check `authors.json` and
 
 ### Testing on a branch before merging
 
-Pushing to the `publications-automation` branch runs the workflow in **read-only**
-mode. Any ref other than the default branch skips every write step: nothing is
-committed, no branch is touched, no pull request is opened.
+Any ref other than the default branch runs the workflow in **read-only** mode: every
+write step is skipped, so nothing is committed, no branch is touched, and no pull
+request is opened.
+
+Trigger a test either by pushing to the `publications-automation` branch — a
+temporary trigger that is removed when that branch merges — or, once this workflow is
+on `main`, via **Actions → Fetch new publications → Run workflow** with the branch
+selected.
 
 Instead the run uploads a **`publications-preview`** artifact containing:
 

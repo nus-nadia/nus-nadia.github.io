@@ -20,8 +20,16 @@ on:
         type: boolean
         required: false
         default: false
-  # Test runs. Any ref other than the default branch is treated as read-only:
+  # TEMPORARY — remove this trigger before merging to main.
+  #
+  # It exists so the fetcher can be tested against a real ADS token while this
+  # branch is under review. Any ref other than the default branch is read-only:
   # results are uploaded as an artifact and nothing is committed or pushed.
+  #
+  # Once the workflow file is on main, "Run workflow" in the Actions tab can be
+  # pointed at any branch and gives the same read-only test, so this trigger has
+  # no remaining purpose. Left in place it would fire again if a branch of this
+  # name were ever recreated.
   push:
     branches: ["publications-automation"]
 
