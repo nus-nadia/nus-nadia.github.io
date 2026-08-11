@@ -43,6 +43,22 @@ afterwards is picked up.
 > **The `joined` dates currently in the file are placeholders.** Replace them with
 > real dates, otherwise the backfill will pull in the wrong range of papers.
 
+ORCIDs are on record for Marc Hon, Riley Clarke and Matthew Sung. The other five
+members have none — see *Known limitations*.
+
+### Two switches at the top of `authors.json`
+
+`restrict_to_astronomy` (default `true`) accepts only astronomy results: ADS
+`database:astronomy`, arXiv `astro-ph` categories. Without it a name search for
+`Clarke, R.` returns particle-accelerator and elastomer-actuator papers by unrelated
+researchers — that is measured, not hypothetical.
+
+`require_member_coauthor` (default `true`) makes a name-based ADS search additionally
+require the ORCID of a member who has one, and the arXiv equivalent check the author
+list for that member. This is what keeps `Wu, Y.` and `Lin, Y.` usable. The trade-off
+is that a solo paper, or one with no ORCID-carrying member as co-author, will be
+missed. Members who have their own ORCID are unaffected.
+
 **Why ORCID matters.** A name search for `Wu, Y.` matches a great many astronomers
 who are not in this group. ORCID is exact, and it is the difference between a paper
 appearing on the site automatically and sitting in a PR waiting for someone to check
@@ -118,11 +134,23 @@ search is most likely to pull in a stranger's paper.
 
 ## Known limitations
 
+- **Five of eight members have no ORCID:** Rishi Chandramohan, Lin Yihan, Wu Yuzhe,
+  Wu Yuxin and Nguyen Thai Huy. A search of the ORCID registry found no record for
+  Rishi at all, and nothing distinguishing among the 21/14/94 candidates for the
+  other names. Their papers therefore fall back to name search and can never
+  auto-commit. Asking them to register at [orcid.org](https://orcid.org) is the
+  single highest-value fix available.
+
 - **Auto-tagging is approximate.** Against the five publications already on the site,
   title-only tagging reproduces the hand-assigned tags exactly for 2 of 5. Real runs
   also see the abstract and UAT keywords, so accuracy is better than that — but assume
   new entries need a glance rather than trusting them blindly. Improve accuracy by
   adding keywords and patterns to `tags-map.json` as you spot misses.
+- **The tag vocabulary does not yet cover time-domain astronomy.** A trial run tagged
+  Riley Clarke's stellar-flare and LSST papers `Uncategorized`, because the vocabulary
+  is built around asteroseismology, exoplanets and ML. Consider adding tags such as
+  *Time-Domain Astronomy*, *Variable Stars* or *Microlensing* to match what the group
+  actually works on now.
 - **`pdf_link` is always `#`.** Neither ADS nor arXiv reliably gives a free full-text
   PDF URL, and the existing entries use `#` too. Fill it in by hand where you have one.
 - **Preprints never auto-commit.** They have no DOI or journal reference. A preprint

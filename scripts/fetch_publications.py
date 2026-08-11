@@ -292,19 +292,44 @@ def ads_date_clause(start: date, end: date) -> str:
     return f"pubdate:[{start:%Y-%m} TO {end:%Y-%m}]"
 
 
-def fetch_from_ads(token: str, author: dict, start: date, end: date) -> list[tuple[dict, bool]]:
+# Excludes same-name researchers publishing outside astronomy.
+ADS_ASTRO_CLAUSE = " AND database:astronomy"
+
+
+def coauthor_clause(anchors: list[str], exclude: str | None = None) -> str:
+    """An ADS clause requiring at least one ORCID-carrying member on the paper.
+
+    Names like 'Wu, Y.' match a great many unrelated astronomers, so a bare name
+    search is close to useless. Anchoring it to a colleague's ORCID removes
+    nearly all of that noise, at the cost of missing solo papers.
+    """
+    usable = [a for a in anchors if a and a != exclude]
+    if not usable:
+        return ""
+    return " AND (" + " OR ".join(f'orcid:"{a}"' for a in usable) + ")"
+
+
+def fetch_from_ads(
+    token: str,
+    author: dict,
+    start: date,
+    end: date,
+    anchors: list[str] | None = None,
+    astro_only: bool = True,
+) -> list[tuple[dict, bool]]:
     """Return (raw_doc, matched_by_orcid) pairs for one member."""
     results: list[tuple[dict, bool]] = []
     seen_bibcodes: set[str] = set()
-    date_clause = ads_date_clause(start, end)
+    date_clause = ads_date_clause(start, end) + (ADS_ASTRO_CLAUSE if astro_only else "")
 
     queries: list[tuple[str, bool]] = []
     orcid = (author.get("orcid") or "").strip()
     if orcid:
         queries.append((f'orcid:"{orcid}" {date_clause}', True))
     else:
+        anchor_clause = coauthor_clause(anchors or [])
         for variant in author.get("name_variants", []):
-            queries.append((f'author:"{variant}" {date_clause}', False))
+            queries.append((f'author:"{variant}" {date_clause}{anchor_clause}', False))
 
     for query, by_orcid in queries:
         try:
@@ -396,7 +421,34 @@ def ads_doc_to_candidate(doc: dict, tagger: Tagger, by_orcid: bool) -> dict:
 # arXiv fallback
 # --------------------------------------------------------------------------
 
-def fetch_from_arxiv(author: dict, start: date, end: date) -> list[dict]:
+def name_key(name: str) -> tuple[str, str]:
+    """Reduce a personal name to (surname, first initial), both lowercased.
+
+    Handles both the 'Hon, M.' form used by ADS and the 'Marc Hon' form arXiv
+    returns, so the two can be compared.
+    """
+    name = " ".join((name or "").replace(".", " ").split())
+    if not name:
+        return ("", "")
+    if "," in name:
+        surname, _, rest = name.partition(",")
+    else:
+        parts = name.split()
+        surname, rest = parts[-1], " ".join(parts[:-1])
+    surname = surname.strip().lower()
+    rest = rest.strip()
+    return (surname, rest[0].lower() if rest else "")
+
+
+def has_member_coauthor(author_names: list[str], anchor_names: list[str]) -> bool:
+    """True if any anchor member appears in the paper's author list."""
+    present = {name_key(n) for n in author_names}
+    return any(name_key(a) in present for a in anchor_names)
+
+
+def fetch_from_arxiv(
+    author: dict, start: date, end: date, astro_only: bool = True
+) -> list[dict]:
     """Name-based arXiv search. Results can never be ORCID-matched."""
     docs: list[dict] = []
     for variant in author.get("name_variants", []):
@@ -427,6 +479,10 @@ def fetch_from_arxiv(author: dict, start: date, end: date) -> list[dict]:
             published = parse_date((entry.findtext("atom:published", "", ARXIV_NS) or "").strip())
             if published and not (start <= published <= end):
                 continue
+            categories = [c.get("term", "") for c in entry.findall("atom:category", ARXIV_NS)]
+            if astro_only and not any(c.startswith("astro-ph") for c in categories):
+                # A same-name researcher in another field. Cheap, decisive filter.
+                continue
             docs.append(
                 {
                     "title": " ".join((entry.findtext("atom:title", "", ARXIV_NS) or "").split()),
@@ -442,9 +498,7 @@ def fetch_from_arxiv(author: dict, start: date, end: date) -> list[dict]:
                     .rstrip("/")
                     .split("/abs/")[-1],
                     "doi": entry.findtext("atom:doi", None, ARXIV_NS),
-                    "categories": [
-                        c.get("term", "") for c in entry.findall("atom:category", ARXIV_NS)
-                    ],
+                    "categories": categories,
                 }
             )
     return docs
@@ -650,9 +704,19 @@ def main() -> int:
         return 0
 
     tagger = Tagger(load_json(TAGS_MAP_JSON))
-    authors = load_json(AUTHORS_JSON)["authors"]
+    author_config = load_json(AUTHORS_JSON)
+    authors = author_config["authors"]
     existing = load_json(PUBLICATIONS_JSON)
     seen = SeenIndex(existing)
+
+    # Members with an ORCID anchor the name-based searches for those without one.
+    require_coauthor = bool(author_config.get("require_member_coauthor", False))
+    astro_only = bool(author_config.get("restrict_to_astronomy", True))
+    anchor_orcids = [(a.get("orcid") or "").strip() for a in authors if (a.get("orcid") or "").strip()]
+    anchor_names = [v for a in authors if (a.get("orcid") or "").strip() for v in a.get("name_variants", [])]
+    if require_coauthor and not anchor_orcids:
+        log("! require_member_coauthor is set but no member has an ORCID; ignoring it")
+        require_coauthor = False
 
     token = "" if args.force_arxiv else os.environ.get("ADS_TOKEN", "").strip()
     if token:
@@ -679,16 +743,28 @@ def main() -> int:
         log(f"{author['name']}: searching {start} .. {end}")
         candidates: list[dict] = []
 
+        own_orcid = (author.get("orcid") or "").strip()
+        anchors = anchor_orcids if (require_coauthor and not own_orcid) else []
+
         if token:
             try:
-                for doc, by_orcid in fetch_from_ads(token, author, start, end):
+                for doc, by_orcid in fetch_from_ads(token, author, start, end, anchors, astro_only):
                     candidates.append(ads_doc_to_candidate(doc, tagger, by_orcid))
             except urllib.error.HTTPError as exc:
                 log(f"  ! ADS rejected the token (HTTP {exc.code}); falling back to arXiv")
                 token = ""
 
         if not token:
-            for doc in fetch_from_arxiv(author, start, end):
+            for doc in fetch_from_arxiv(author, start, end, astro_only):
+                # arXiv exposes no ORCIDs, so the same constraint is applied by
+                # checking the author list for a member who has one.
+                if require_coauthor and not own_orcid:
+                    # Compare via name_variants: the display names are given in
+                    # surname-first order, which name_key would misparse.
+                    own_keys = {name_key(v) for v in author.get("name_variants", [])}
+                    others = [n for n in anchor_names if name_key(n) not in own_keys]
+                    if not has_member_coauthor(doc.get("authors") or [], others):
+                        continue
                 candidates.append(arxiv_doc_to_candidate(doc, tagger))
 
         for candidate in candidates:
