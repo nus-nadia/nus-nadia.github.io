@@ -20,6 +20,10 @@ on:
         type: boolean
         required: false
         default: false
+  # Test runs. Any ref other than the default branch is treated as read-only:
+  # results are uploaded as an artifact and nothing is committed or pushed.
+  push:
+    branches: ["publications-automation"]
 
 permissions:
   contents: write
@@ -28,7 +32,7 @@ permissions:
 
 # Never let two runs race on main or on the review branch.
 concurrency:
-  group: publications-fetch
+  group: publications-fetch-${{ github.ref }}
   cancel-in-progress: false
 
 env:
@@ -38,10 +42,12 @@ jobs:
   fetch:
     runs-on: ubuntu-latest
     steps:
+      # Checks out the ref that triggered the run: main for the schedule, the
+      # test branch for a branch push. Do not pin this to main — a branch run
+      # needs the branch's own scripts.
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          ref: main
           fetch-depth: 0
 
       - name: Set up Python
@@ -59,6 +65,9 @@ jobs:
         env:
           ADS_TOKEN: ${{ secrets.ADS_TOKEN }}
         run: |
+          if [ -z "$ADS_TOKEN" ]; then
+            echo "::warning::ADS_TOKEN is not set — falling back to arXiv (name matching only)"
+          fi
           ARGS="--days ${{ github.event.inputs.days || '7' }}"
           if [ "${{ github.event.inputs.backfill }}" = "true" ]; then
             ARGS="--backfill"
@@ -73,16 +82,64 @@ jobs:
           steps.fetch.outputs.confident_count == '0' &&
           steps.fetch.outputs.uncertain_count == '0'
         run: |
-          echo "### No new publications this week" >> "$GITHUB_STEP_SUMMARY"
+          echo "### No new publications" >> "$GITHUB_STEP_SUMMARY"
           echo "" >> "$GITHUB_STEP_SUMMARY"
           echo "Nothing was committed and no pull request was opened." >> "$GITHUB_STEP_SUMMARY"
 
       # ------------------------------------------------------------------
-      # Confident entries: straight to main.
+      # Test runs (any ref that is not the default branch): read-only.
+      # ------------------------------------------------------------------
+      - name: Build preview
+        id: preview
+        if: >-
+          github.ref != 'refs/heads/main' &&
+          github.event.inputs.dry_run != 'true'
+        run: |
+          mkdir -p preview
+          cp publications/publications.json preview/publications.before.json
+          cp staged_publications/confident.json preview/staged-confident.json
+          cp staged_publications/uncertain.json preview/staged-uncertain.json
+
+          # Apply both sets to a throwaway copy so the artifact shows exactly
+          # what the page would render. Nothing here is committed.
+          python scripts/fetch_publications.py --apply staged_publications/confident.json
+          python scripts/fetch_publications.py --apply staged_publications/uncertain.json
+          cp publications/publications.json preview/publications.json
+          git checkout -- publications/publications.json
+
+          python scripts/render_review_pr.py staged_publications/uncertain.json \
+            > preview/review-notes.md || true
+
+          {
+            echo "### Test run — nothing was committed"
+            echo ""
+            echo "| | count |"
+            echo "|---|---|"
+            echo "| Would auto-commit to main | ${{ steps.fetch.outputs.confident_count }} |"
+            echo "| Would go to the review PR | ${{ steps.fetch.outputs.uncertain_count }} |"
+            echo ""
+            echo "Download the **publications-preview** artifact, copy its"
+            echo "\`publications.json\` over \`publications/publications.json\` locally,"
+            echo "and serve the site to see the rendered result."
+            echo ""
+            cat preview/review-notes.md
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload preview artifact
+        if: steps.preview.outcome == 'success'
+        uses: actions/upload-artifact@v4
+        with:
+          name: publications-preview
+          path: preview/
+          retention-days: 14
+
+      # ------------------------------------------------------------------
+      # Confident entries: straight to main. Default branch only.
       # ------------------------------------------------------------------
       - name: Commit confident entries to main
         id: commit_main
         if: >-
+          github.ref == 'refs/heads/main' &&
           steps.fetch.outputs.confident_count != '0' &&
           github.event.inputs.dry_run != 'true'
         run: |
@@ -106,11 +163,12 @@ jobs:
         run: gh workflow run static.yml --ref main
 
       # ------------------------------------------------------------------
-      # Uncertain entries: rolling review PR.
+      # Uncertain entries: rolling review PR. Default branch only.
       # ------------------------------------------------------------------
       - name: Check the review branch for human edits
         id: branch_state
         if: >-
+          github.ref == 'refs/heads/main' &&
           steps.fetch.outputs.uncertain_count != '0' &&
           github.event.inputs.dry_run != 'true'
         run: |
@@ -131,6 +189,7 @@ jobs:
         id: review
         if: >-
           steps.fetch.outputs.uncertain_count != '0' &&
+          steps.branch_state.outcome == 'success' &&
           steps.branch_state.outputs.human_commits == '0'
         run: |
           mkdir -p /tmp/pubs

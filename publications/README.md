@@ -126,6 +126,34 @@ python3 scripts/fetch_publications.py --backfill      # each member's full NADIA
 A dry run writes nothing and is the right way to sanity-check `authors.json` and
 `tags-map.json` after editing them.
 
+### Testing on a branch before merging
+
+Pushing to the `publications-automation` branch runs the workflow in **read-only**
+mode. Any ref other than the default branch skips every write step: nothing is
+committed, no branch is touched, no pull request is opened.
+
+Instead the run uploads a **`publications-preview`** artifact containing:
+
+| File | What it is |
+|---|---|
+| `publications.json` | the full list as it *would* look, for local preview |
+| `publications.before.json` | the current list, for diffing |
+| `staged-confident.json` | entries that would auto-commit to `main` |
+| `staged-uncertain.json` | entries that would go to the review PR, with reasons |
+| `review-notes.md` | the pull request body that would have been posted |
+
+The job summary shows both counts and the full review notes without downloading
+anything. To preview the rendered page, copy the artifact's `publications.json` over
+`publications/publications.json` locally, serve the site, then `git checkout --
+publications/publications.json` to discard it.
+
+Set the `ADS_TOKEN` secret **before** the test run, otherwise it silently falls back
+to arXiv and you will not be testing what you think you are. The run emits a warning
+annotation when the secret is missing.
+
+Note that GitHub Pages serves one site per repository, so there is no way to deploy a
+branch for preview without replacing the live site. Use the artifact instead.
+
 ### Backfilling the existing list
 
 `--backfill` searches each member's whole membership window instead of the last week.
