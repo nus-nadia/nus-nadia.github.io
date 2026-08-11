@@ -1,5 +1,8 @@
 {
   "_comment": [
+    "      is included. Set for the PI so the group page shows their whole career.",
+    "  joined = null means no lower bound: the member's full publication record",
+    "",
     "Registry of NADIA members used by scripts/fetch_publications.py to find new papers.",
     "",
     "Each entry:",
@@ -15,7 +18,6 @@
     "  left          Last day of membership (YYYY-MM-DD), or null if still active.",
     "                Papers published after this date are ignored.",
     "",
-    "TODO: the 'joined' dates below are placeholders — replace them with real dates.",
     "      papers can never auto-commit and will always land in the review PR.",
     "TODO: Rishi Chandramohan, Lin Yihan, Wu Yuzhe, Wu Yuxin and Nguyen Thai Huy",
     "      have no ORCID on record. Ask them to create one at orcid.org and add it",
@@ -39,7 +41,7 @@
         "Hon, M.",
         "Hon, Marc"
       ],
-      "joined": "2025-01-01",
+      "joined": null,
       "left": null
     },
     {
@@ -49,7 +51,7 @@
         "Clarke, R.",
         "Clarke, Riley"
       ],
-      "joined": "2025-01-01",
+      "joined": "2026-03-01",
       "left": null
     },
     {
