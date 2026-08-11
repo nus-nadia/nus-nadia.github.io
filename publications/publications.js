@@ -3,6 +3,19 @@ let filteredPublications = [];
 let currentPage = 1;
 const itemsPerPage = 5;
 
+// Author strings may contain <strong> around NADIA members, so markup has to be
+// removed before searching — otherwise a search for "strong" matches everything.
+function plainText(value) {
+    return (value || "").replace(/<[^>]+>/g, "");
+}
+
+// A link is only rendered when it actually points somewhere. Preprints have no
+// DOI, and older entries use "#" as a placeholder.
+function hasLink(value) {
+    const url = (value || "").trim();
+    return url !== "" && url !== "#";
+}
+
 // Load publications
 async function loadPublications() {
     try {
@@ -35,7 +48,7 @@ function renderPublications() {
             pubCard.dataset.year = pub.year;
             pubCard.dataset.topics = pub.tags.join(",").toLowerCase();
             pubCard.dataset.title = pub.title.toLowerCase();
-            pubCard.dataset.authors = pub.authors.toLowerCase();
+            pubCard.dataset.authors = plainText(pub.authors).toLowerCase();
 
             pubCard.innerHTML = `
                 <div class="flex flex-col md:flex-row md:items-center md:justify-between">
@@ -49,8 +62,8 @@ function renderPublications() {
                         </div>
                     </div>
                     <div class="flex space-x-4">
-                        <a href="${pub.pdf_link}" class="text-blue-600 hover:text-blue-800"><i data-feather="file-text"></i> PDF</a>
-                        <a href="${pub.doi_link}" class="text-blue-600 hover:text-blue-800"><i data-feather="external-link"></i> DOI</a>
+                        ${hasLink(pub.pdf_link) ? `<a href="${pub.pdf_link}" class="text-blue-600 hover:text-blue-800"><i data-feather="file-text"></i> PDF</a>` : ""}
+                        ${hasLink(pub.doi_link) ? `<a href="${pub.doi_link}" class="text-blue-600 hover:text-blue-800"><i data-feather="external-link"></i> DOI</a>` : ""}
                     </div>
                 </div>
             `;
@@ -153,7 +166,7 @@ function setupFilters() {
             const matchesTopic = selectedTopics.length === 0 || selectedTopics.some(t => pub.tags.map(tag => tag.toLowerCase()).includes(t));
             const matchesKeyword = keyword === "" ||
                 pub.title.toLowerCase().includes(keyword) ||
-                pub.authors.toLowerCase().includes(keyword) ||
+                plainText(pub.authors).toLowerCase().includes(keyword) ||
                 pub.tags.some(tag => tag.toLowerCase().includes(keyword));
 
             return matchesYear && matchesTopic && matchesKeyword;

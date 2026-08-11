@@ -57,7 +57,12 @@ ADS_FIELDS = (
     "identifier,abstract,doctype"
 )
 ARXIV_ENDPOINT = "https://export.arxiv.org/api/query"
-ARXIV_NS = {"atom": "http://www.w3.org/2005/Atom"}
+ARXIV_NS = {
+    "atom": "http://www.w3.org/2005/Atom",
+    # DOI and journal reference live in arXiv's own namespace, not atom.
+    "arxiv": "http://arxiv.org/schemas/atom",
+}
+ARXIV_PDF = "https://arxiv.org/pdf/{}"
 
 USER_AGENT = "nus-nadia-publications-bot/1.0 (+https://github.com/nus-nadia)"
 REQUEST_TIMEOUT = 30
@@ -231,15 +236,32 @@ class Tagger:
 # formatting into the site's schema
 # --------------------------------------------------------------------------
 
-def format_authors(author_list: list[str]) -> str:
-    """Render 'Hon, M.; Huber, D.; Rui, N. Z.; et al.' as the existing entries do."""
+def format_authors(author_list: list[str], member_keys: set | None = None) -> str:
+    """Render 'Hon, M.; Huber, D.; Rui, N. Z.; et al.' as the existing entries do.
+
+    NADIA members are wrapped in <strong>. If every member falls outside the
+    first three shown, they are named after 'et al.' instead — otherwise the
+    group is invisible on papers where its members are middle authors, which is
+    most of them.
+    """
     cleaned = [a.strip() for a in (author_list or []) if a and a.strip()]
     if not cleaned:
         return "Unknown"
+
+    member_keys = member_keys or set()
     shown = cleaned[:3]
-    rendered = "; ".join(shown)
-    if len(cleaned) > 3:
-        rendered += "; et al."
+    rendered = "; ".join(
+        f"<strong>{a}</strong>" if name_key(a) in member_keys else a for a in shown
+    )
+    if len(cleaned) <= 3:
+        return rendered
+
+    rendered += "; et al."
+    if not any(name_key(a) in member_keys for a in shown):
+        hidden = [a for a in cleaned[3:] if name_key(a) in member_keys]
+        if hidden:
+            named = "; ".join(f"<strong>{a}</strong>" for a in hidden[:2])
+            rendered += f" (incl. {named})"
     return rendered
 
 
@@ -256,19 +278,24 @@ def build_entry(
     *,
     title: str,
     authors: list[str],
+    member_keys: set | None = None,
     publication_info: str,
     doi: str | None,
     year: int,
     tags: list[str],
-    pdf_link: str = "#",
+    pdf_link: str = "",
 ) -> dict:
-    """Produce a record in exactly the shape publications.js already renders."""
+    """Produce a record in exactly the shape publications.js already renders.
+
+    A link with no target is left as an empty string rather than '#'; the page
+    omits the button entirely in that case.
+    """
     return {
         "title": title,
-        "authors": format_authors(authors),
+        "authors": format_authors(authors, member_keys),
         "publication_info": publication_info,
         "pdf_link": pdf_link,
-        "doi_link": f"https://doi.org/{doi}" if doi else "#",
+        "doi_link": f"https://doi.org/{doi}" if doi else "",
         "year": year,
         "tags": tags,
     }
@@ -363,7 +390,9 @@ def first(value):
     return value
 
 
-def ads_doc_to_candidate(doc: dict, tagger: Tagger, by_orcid: bool) -> dict:
+def ads_doc_to_candidate(
+    doc: dict, tagger: Tagger, by_orcid: bool, member_keys: set | None = None
+) -> dict:
     title = first(doc.get("title")) or "(untitled)"
     abstract = doc.get("abstract") or ""
     keywords = doc.get("keyword") or []
@@ -409,6 +438,9 @@ def ads_doc_to_candidate(doc: dict, tagger: Tagger, by_orcid: bool) -> dict:
         "entry": build_entry(
             title=title,
             authors=doc.get("author") or [],
+            member_keys=member_keys,
+            # The preprint PDF is free to read; the DOI is the version of record.
+            pdf_link=ARXIV_PDF.format(arxiv_id) if arxiv_id else "",
             publication_info=publication_info,
             doi=doi,
             year=year,
@@ -497,32 +529,46 @@ def fetch_from_arxiv(
                     "arxiv_id": (entry.findtext("atom:id", "", ARXIV_NS) or "")
                     .rstrip("/")
                     .split("/abs/")[-1],
-                    "doi": entry.findtext("atom:doi", None, ARXIV_NS),
+                    "doi": entry.findtext("arxiv:doi", None, ARXIV_NS),
+                    "journal_ref": " ".join(
+                        (entry.findtext("arxiv:journal_ref", "", ARXIV_NS) or "").split()
+                    ),
                     "categories": categories,
                 }
             )
     return docs
 
 
-def arxiv_doc_to_candidate(doc: dict, tagger: Tagger) -> dict:
+def arxiv_doc_to_candidate(
+    doc: dict, tagger: Tagger, member_keys: set | None = None
+) -> dict:
     title = doc["title"]
     tags, keyword_hit = tagger.tag(doc.get("categories", []), f"{title} {doc.get('abstract', '')}")
     doi = normalize_doi(doc.get("doi"))
     published = doc.get("published")
+    arxiv_id = doc.get("arxiv_id")
+
+    # arXiv reports the journal reference once a preprint has been published.
+    journal_ref = doc.get("journal_ref") or ""
+    has_journal = bool(journal_ref)
+    publication_info = journal_ref if has_journal else f"arXiv:{arxiv_id}"
+
     return {
         "source": "arxiv",
         "matched_by_orcid": False,
         "doi": doi,
-        "arxiv_id": doc.get("arxiv_id"),
+        "arxiv_id": arxiv_id,
         "title_key": normalize_title(title),
         "pub_date": published,
-        "has_journal": False,
+        "has_journal": has_journal,
         "keyword_tag_match": keyword_hit,
         "tags": tags,
         "entry": build_entry(
             title=title,
             authors=doc.get("authors") or [],
-            publication_info=f"arXiv:{doc.get('arxiv_id')}",
+            member_keys=member_keys,
+            pdf_link=ARXIV_PDF.format(arxiv_id) if arxiv_id else "",
+            publication_info=publication_info,
             doi=doi,
             year=published.year if published else date.today().year,
             tags=tags,
@@ -712,6 +758,8 @@ def main() -> int:
     # Members with an ORCID anchor the name-based searches for those without one.
     require_coauthor = bool(author_config.get("require_member_coauthor", False))
     astro_only = bool(author_config.get("restrict_to_astronomy", True))
+    # Used to highlight group members in the rendered author line.
+    member_keys = {name_key(v) for a in authors for v in a.get("name_variants", [])}
     anchor_orcids = [(a.get("orcid") or "").strip() for a in authors if (a.get("orcid") or "").strip()]
     anchor_names = [v for a in authors if (a.get("orcid") or "").strip() for v in a.get("name_variants", [])]
     if require_coauthor and not anchor_orcids:
@@ -749,7 +797,7 @@ def main() -> int:
         if token:
             try:
                 for doc, by_orcid in fetch_from_ads(token, author, start, end, anchors, astro_only):
-                    candidates.append(ads_doc_to_candidate(doc, tagger, by_orcid))
+                    candidates.append(ads_doc_to_candidate(doc, tagger, by_orcid, member_keys))
             except urllib.error.HTTPError as exc:
                 log(f"  ! ADS rejected the token (HTTP {exc.code}); falling back to arXiv")
                 token = ""
@@ -765,7 +813,7 @@ def main() -> int:
                     others = [n for n in anchor_names if name_key(n) not in own_keys]
                     if not has_member_coauthor(doc.get("authors") or [], others):
                         continue
-                candidates.append(arxiv_doc_to_candidate(doc, tagger))
+                candidates.append(arxiv_doc_to_candidate(doc, tagger, member_keys))
 
         for candidate in candidates:
             if not in_membership_window(candidate["pub_date"], author):

@@ -11,9 +11,11 @@ and entries added by hand are left alone.
 Add a free [NASA ADS API token](https://ui.adsabs.harvard.edu/user/settings/token)
 as the repository secret **`ADS_TOKEN`** (Settings → Secrets and variables → Actions).
 
-Without the token the workflow falls back to arXiv, which matches on author name
-only and has no DOIs. In that state nothing can meet the auto-commit bar, so every
-result lands in the review pull request instead. It still works — it is just noisier.
+Without the token the workflow falls back to arXiv. That still produces good
+entries — arXiv reports the journal reference and DOI once a preprint is published
+— but it can only match on author name, and the auto-commit bar requires an ORCID
+match. So without the token every result lands in the review pull request. It
+works; it is just more to review.
 
 ## The two files you edit
 
@@ -151,8 +153,18 @@ search is most likely to pull in a stranger's paper.
   is built around asteroseismology, exoplanets and ML. Consider adding tags such as
   *Time-Domain Astronomy*, *Variable Stars* or *Microlensing* to match what the group
   actually works on now.
-- **`pdf_link` is always `#`.** Neither ADS nor arXiv reliably gives a free full-text
-  PDF URL, and the existing entries use `#` too. Fill it in by hand where you have one.
 - **Preprints never auto-commit.** They have no DOI or journal reference. A preprint
   appears in the review PR; once it is published, ADS returns the journal version and
   the duplicate check matches it by title, so it will not be added twice.
+
+## Links
+
+`pdf_link` points at the free arXiv PDF whenever the paper has an arXiv identifier.
+`doi_link` points at the version of record, and is an **empty string** when the paper
+has no DOI yet.
+
+`publications.js` renders each button only when its link has a real target, treating
+both `""` and the legacy `"#"` placeholder as "no link". So a preprint shows a PDF
+button and no DOI button, and the five original hand-written entries — which all
+carry `pdf_link: "#"` — no longer show a dead PDF button. Fill those in by hand if
+you have the URLs.
