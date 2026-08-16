@@ -5,3 +5,8 @@ nus_logo_full-vertical.jpg
 .DS_Store
 **/*.DS_Store
 CLAUDE.md
+
+# Staged output from the publications fetcher
+staged_publications/
+__pycache__/
+*.pyc

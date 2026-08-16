@@ -1,0 +1,185 @@
+{
+  "_comment": [
+    "Maps source metadata onto the site's curated tag vocabulary.",
+    "",
+    "  vocabulary  The complete set of allowed tags. The fetcher will never emit a",
+    "              tag that is not listed here, so the topic filter stays clean.",
+    "  keywords    Exact-ish matches against a paper's ADS/UAT keyword list. Compared",
+    "              case-insensitively after stripping punctuation. A hit here counts",
+    "              as a high-confidence tag.",
+    "  patterns    Regexes tested against 'title + abstract'. A hit here is a guess:",
+    "              it still produces a tag, but see below.",
+    "  implies     Broader tags added automatically whenever this tag matches, so",
+    "              the hierarchy the existing entries use is preserved (every Deep",
+    "              Learning paper is also tagged Machine Learning).",
+    "  uncategorized_tag  Applied when nothing matches, so untagged papers are easy",
+    "              to find and fix. A paper carrying this tag never auto-commits.",
+    "",
+    "Both keyword and pattern matches satisfy the 'has a tag' auto-commit condition.",
+    "To require UAT-keyword matches specifically, set require_keyword_match to true."
+  ],
+  "require_keyword_match": false,
+  "uncategorized_tag": "Uncategorized",
+  "vocabulary": [
+    "Machine Learning",
+    "Deep Learning",
+    "Exoplanets",
+    "Exoplanet Discovery",
+    "Astroseismology",
+    "Big Data",
+    "Algorithms"
+  ],
+  "rules": [
+    {
+      "tag": "Machine Learning",
+      "keywords": [
+        "machine learning",
+        "astroinformatics",
+        "astrostatistics",
+        "computational methods",
+        "random forests",
+        "support vector machines",
+        "gaussian processes",
+        "bayesian statistics"
+      ],
+      "patterns": [
+        "\\bmachine[- ]learning\\b",
+        "\\bnormalizing flows?\\b",
+        "\\bgenerative model",
+        "\\brandom forest",
+        "\\bgradient boost",
+        "\\bclassifier\\b",
+        "\\bsupervised\\b",
+        "\\bunsupervised\\b",
+        "\\bemulat(?:or|ion|ing)\\b"
+      ]
+    },
+    {
+      "tag": "Deep Learning",
+      "keywords": [
+        "neural networks",
+        "deep learning",
+        "convolutional neural networks"
+      ],
+      "patterns": [
+        "\\bdeep[- ]learning\\b",
+        "\\bneural network",
+        "\\bconvolutional\\b",
+        "\\btransformer(?:s| model| architecture)\\b",
+        "\\bautoencoder",
+        "\\bnetwork architecture",
+        "\\btraining set\\b"
+      ],
+      "implies": [
+        "Machine Learning"
+      ]
+    },
+    {
+      "tag": "Exoplanets",
+      "keywords": [
+        "exoplanets",
+        "exoplanet systems",
+        "exoplanet astronomy",
+        "transits",
+        "hot jupiters",
+        "planetary systems",
+        "extrasolar gaseous giant planets",
+        "star-planet interactions",
+        "exoplanet atmospheres"
+      ],
+      "patterns": [
+        "\\bexoplanet",
+        "\\bplanetary system",
+        "\\bhot jupiter",
+        "\\btransiting planet",
+        "\\bplanet[- ]host",
+        "\\bgiant planet",
+        "\\bengulf",
+        "\\bsub[- ]neptune",
+        "\\bwarm jupiter",
+        "\\bplanetary compan"
+      ]
+    },
+    {
+      "tag": "Exoplanet Discovery",
+      "keywords": [
+        "exoplanet detection methods",
+        "transit photometry",
+        "radial velocity",
+        "exoplanet catalogs",
+        "transit timing variation method"
+      ],
+      "patterns": [
+        "\\bplanet (?:candidate|detection|discovery)",
+        "\\bnew(?:ly)? discovered planet",
+        "\\btransit search\\b",
+        "\\bradial velocit(?:y|ies)\\b"
+      ],
+      "implies": [
+        "Exoplanets"
+      ]
+    },
+    {
+      "tag": "Astroseismology",
+      "keywords": [
+        "asteroseismology",
+        "stellar oscillations",
+        "solar-like oscillations",
+        "red giant stars",
+        "stellar evolutionary models",
+        "stellar physics",
+        "stellar evolution",
+        "helioseismology"
+      ],
+      "patterns": [
+        "\\baster[o]?seismolog",
+        "\\bastroseismolog",
+        "\\bstellar oscillation",
+        "\\bsolar[- ]like oscillat",
+        "\\bred giant",
+        "\\bstellar evolution"
+      ]
+    },
+    {
+      "tag": "Big Data",
+      "keywords": [
+        "astronomical databases",
+        "surveys",
+        "catalogs",
+        "sky surveys",
+        "virtual observatories"
+      ],
+      "patterns": [
+        "\\ball[- ]sky\\b",
+        "\\blarge[- ]scale survey",
+        "\\bdata release\\b",
+        "\\bmillions? of (?:stars|sources|light curves)",
+        "\\bpipeline\\b",
+        "\\b\\d{1,3},\\d{3}\\b",
+        "\\bcatalog(?:ue)?\\b",
+        "\\bTESS\\b",
+        "\\bKepler\\b"
+      ]
+    },
+    {
+      "tag": "Algorithms",
+      "keywords": [
+        "algorithms",
+        "time series analysis",
+        "period search",
+        "signal processing",
+        "light curves"
+      ],
+      "patterns": [
+        "\\balgorithm",
+        "\\btime[- ]series analysis\\b",
+        "\\bperiodogram\\b",
+        "\\blomb[- ]scargle\\b",
+        "\\bdetrend",
+        "\\bimproved (?:neural )?(?:network|method|algorithm)",
+        "\\bpipeline\\b",
+        "\\bclassification (?:scheme|method)"
+      ]
+    }
+  ]
+}

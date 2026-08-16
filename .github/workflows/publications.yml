@@ -1,0 +1,264 @@
+name: Fetch new publications
+
+on:
+  schedule:
+    # 01:00 UTC every Monday = 09:00 Singapore time
+    - cron: "0 1 * * 1"
+  workflow_dispatch:
+    inputs:
+      days:
+        description: "Look-back window in days"
+        required: false
+        default: "7"
+      backfill:
+        description: "Ignore the look-back window and search each member's full NADIA window"
+        type: boolean
+        required: false
+        default: false
+      dry_run:
+        description: "Report what would be found without committing anything"
+        type: boolean
+        required: false
+        default: false
+  # TEMPORARY — remove this trigger before merging to main.
+  #
+  # It exists so the fetcher can be tested against a real ADS token while this
+  # branch is under review. Any ref other than the default branch is read-only:
+  # results are uploaded as an artifact and nothing is committed or pushed.
+  #
+  # Once the workflow file is on main, "Run workflow" in the Actions tab can be
+  # pointed at any branch and gives the same read-only test, so this trigger has
+  # no remaining purpose. Left in place it would fire again if a branch of this
+  # name were ever recreated.
+  push:
+    branches: ["publications-automation"]
+
+permissions:
+  contents: write
+  pull-requests: write
+  actions: write
+
+# Never let two runs race on main or on the review branch.
+concurrency:
+  group: publications-fetch-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  REVIEW_BRANCH: publications-review
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      # Checks out the ref that triggered the run: main for the schedule, the
+      # test branch for a branch push. Do not pin this to main — a branch run
+      # needs the branch's own scripts.
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Configure git identity
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Search for new publications
+        id: fetch
+        env:
+          ADS_TOKEN: ${{ secrets.ADS_TOKEN }}
+        run: |
+          if [ -z "$ADS_TOKEN" ]; then
+            echo "::warning::ADS_TOKEN is not set — falling back to arXiv (name matching only)"
+          fi
+          ARGS="--days ${{ github.event.inputs.days || '7' }}"
+          if [ "${{ github.event.inputs.backfill }}" = "true" ]; then
+            ARGS="--backfill"
+          fi
+          if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then
+            ARGS="$ARGS --dry-run"
+          fi
+          python scripts/fetch_publications.py $ARGS
+
+      - name: Report when nothing new was found
+        if: >-
+          steps.fetch.outputs.confident_count == '0' &&
+          steps.fetch.outputs.uncertain_count == '0'
+        run: |
+          echo "### No new publications" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "Nothing was committed and no pull request was opened." >> "$GITHUB_STEP_SUMMARY"
+
+      # ------------------------------------------------------------------
+      # Test runs (any ref that is not the default branch): read-only.
+      # ------------------------------------------------------------------
+      - name: Build preview
+        id: preview
+        if: >-
+          github.ref != 'refs/heads/main' &&
+          github.event.inputs.dry_run != 'true'
+        run: |
+          mkdir -p preview
+          cp publications/publications.json preview/publications.before.json
+          cp staged_publications/confident.json preview/staged-confident.json
+          cp staged_publications/uncertain.json preview/staged-uncertain.json
+
+          # Apply both sets to a throwaway copy so the artifact shows exactly
+          # what the page would render. Nothing here is committed.
+          python scripts/fetch_publications.py --apply staged_publications/confident.json
+          python scripts/fetch_publications.py --apply staged_publications/uncertain.json
+          cp publications/publications.json preview/publications.json
+          git checkout -- publications/publications.json
+
+          python scripts/render_review_pr.py staged_publications/uncertain.json \
+            > preview/review-notes.md || true
+
+          {
+            echo "### Test run — nothing was committed"
+            echo ""
+            echo "| | count |"
+            echo "|---|---|"
+            echo "| Would auto-commit to main | ${{ steps.fetch.outputs.confident_count }} |"
+            echo "| Would go to the review PR | ${{ steps.fetch.outputs.uncertain_count }} |"
+            echo ""
+            echo "Download the **publications-preview** artifact, copy its"
+            echo "\`publications.json\` over \`publications/publications.json\` locally,"
+            echo "and serve the site to see the rendered result."
+            echo ""
+            cat preview/review-notes.md
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload preview artifact
+        if: steps.preview.outcome == 'success'
+        uses: actions/upload-artifact@v4
+        with:
+          name: publications-preview
+          path: preview/
+          retention-days: 14
+
+      # ------------------------------------------------------------------
+      # Confident entries: straight to main. Default branch only.
+      # ------------------------------------------------------------------
+      - name: Commit confident entries to main
+        id: commit_main
+        if: >-
+          github.ref == 'refs/heads/main' &&
+          steps.fetch.outputs.confident_count != '0' &&
+          github.event.inputs.dry_run != 'true'
+        run: |
+          python scripts/fetch_publications.py --apply staged_publications/confident.json
+          if git diff --quiet -- publications/publications.json; then
+            echo "No net change to publications.json; nothing to commit."
+            echo "pushed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git add publications/publications.json
+          git commit -m "Add ${{ steps.fetch.outputs.confident_count }} new publication(s) [automated]"
+          git push origin HEAD:main
+          echo "pushed=true" >> "$GITHUB_OUTPUT"
+
+      # A push made with GITHUB_TOKEN does not trigger other workflows, so the
+      # Pages deploy has to be dispatched explicitly.
+      - name: Trigger Pages deploy
+        if: steps.commit_main.outputs.pushed == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh workflow run static.yml --ref main
+
+      # ------------------------------------------------------------------
+      # Uncertain entries: rolling review PR. Default branch only.
+      # ------------------------------------------------------------------
+      - name: Check the review branch for human edits
+        id: branch_state
+        if: >-
+          github.ref == 'refs/heads/main' &&
+          steps.fetch.outputs.uncertain_count != '0' &&
+          github.event.inputs.dry_run != 'true'
+        run: |
+          git fetch origin --quiet
+          if git ls-remote --exit-code --heads origin "$REVIEW_BRANCH" >/dev/null 2>&1; then
+            echo "exists=true" >> "$GITHUB_OUTPUT"
+            # Commits on the branch not authored by the bot mean a reviewer has
+            # been working there. Rebuilding would discard their work, so bail.
+            HUMAN_COMMITS=$(git log --format='%ae' origin/main..origin/"$REVIEW_BRANCH" \
+              | grep -vc 'github-actions\[bot\]' || true)
+            echo "human_commits=$HUMAN_COMMITS" >> "$GITHUB_OUTPUT"
+          else
+            echo "exists=false" >> "$GITHUB_OUTPUT"
+            echo "human_commits=0" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Rebuild the review branch
+        id: review
+        if: >-
+          steps.fetch.outputs.uncertain_count != '0' &&
+          steps.branch_state.outcome == 'success' &&
+          steps.branch_state.outputs.human_commits == '0'
+        run: |
+          mkdir -p /tmp/pubs
+          # The confident step may have left publications.json dirty if it found
+          # nothing net-new to commit; start from a clean tree.
+          git checkout -- publications/publications.json || true
+          git show origin/main:publications/publications.json > /tmp/pubs/main.json
+
+          # Recover entries still awaiting review on the branch, including any
+          # tag corrections a reviewer made there.
+          if [ "${{ steps.branch_state.outputs.exists }}" = "true" ]; then
+            git show origin/"$REVIEW_BRANCH":publications/publications.json > /tmp/pubs/head.json
+          else
+            echo "[]" > /tmp/pubs/head.json
+          fi
+          python scripts/fetch_publications.py \
+            --diff-entries /tmp/pubs/main.json /tmp/pubs/head.json \
+            --out /tmp/pubs/pending.json
+
+          # Rebuilding from main is what keeps weekly runs conflict-free.
+          git checkout -B "$REVIEW_BRANCH" origin/main
+          python scripts/fetch_publications.py --apply /tmp/pubs/pending.json
+          python scripts/fetch_publications.py --apply staged_publications/uncertain.json
+
+          if git diff --quiet -- publications/publications.json; then
+            echo "Review branch already contains every pending entry."
+            echo "pushed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git add publications/publications.json
+          git commit -m "Add ${{ steps.fetch.outputs.uncertain_count }} publication(s) needing review [automated]"
+          git push --force-with-lease origin "$REVIEW_BRANCH"
+          echo "pushed=true" >> "$GITHUB_OUTPUT"
+
+      - name: Open or update the review pull request
+        if: steps.review.outputs.pushed == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python scripts/render_review_pr.py staged_publications/uncertain.json > /tmp/pr-body.md
+
+          if gh pr view "$REVIEW_BRANCH" --json number >/dev/null 2>&1; then
+            gh pr comment "$REVIEW_BRANCH" --body-file /tmp/pr-body.md
+          else
+            gh pr create \
+              --base main \
+              --head "$REVIEW_BRANCH" \
+              --title "Publications needing review" \
+              --body-file /tmp/pr-body.md
+          fi
+
+      - name: Warn that the review branch was left alone
+        if: >-
+          steps.fetch.outputs.uncertain_count != '0' &&
+          steps.branch_state.outcome == 'success' &&
+          steps.branch_state.outputs.human_commits != '0'
+        run: |
+          {
+            echo "### Review branch skipped"
+            echo ""
+            echo "\`$REVIEW_BRANCH\` has commits that were not made by the bot, so it was"
+            echo "left untouched rather than rebuilt over someone's edits."
+            echo "Merge or close the open pull request and re-run this workflow."
+          } >> "$GITHUB_STEP_SUMMARY"

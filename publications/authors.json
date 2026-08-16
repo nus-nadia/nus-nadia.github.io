@@ -1,0 +1,120 @@
+{
+  "_comment": [
+    "      is included. Set for the PI so the group page shows their whole career.",
+    "  joined = null means no lower bound: the member's full publication record",
+    "",
+    "Registry of NADIA members used by scripts/fetch_publications.py to find new papers.",
+    "",
+    "Each entry:",
+    "  name          Display name (informational only; not used for matching).",
+    "  orcid         ORCID iD, e.g. '0000-0002-1234-5678'. This is the reliable",
+    "                matcher. Papers found via ORCID are eligible for auto-commit;",
+    "                papers found only by name always go to a review PR.",
+    "  name_variants Author-name spellings to search when orcid is null. ADS format",
+    "                is 'Surname, F.' — include the variants that actually appear on",
+    "                their papers.",
+    "  joined        First day of NADIA membership (YYYY-MM-DD). Papers published",
+    "                before this date are ignored.",
+    "  left          Last day of membership (YYYY-MM-DD), or null if still active.",
+    "                Papers published after this date are ignored.",
+    "",
+    "      papers can never auto-commit and will always land in the review PR.",
+    "TODO: Rishi Chandramohan, Lin Yihan, Wu Yuzhe, Wu Yuxin and Nguyen Thai Huy",
+    "      have no ORCID on record. Ask them to create one at orcid.org and add it",
+    "      here — until then their papers can never auto-commit.",
+    "",
+    "require_member_coauthor: when true, a name-based search only accepts a paper",
+    "      that also carries the ORCID of a member who has one. This is what keeps",
+    "      'Wu, Y.' and 'Lin, Y.' from matching unrelated astronomers. The trade-off",
+    "      is that a solo paper, or one with no ORCID-carrying member as co-author,",
+    "      will be missed. Set to false to accept plain name matches.",
+    "",
+    "restrict_to_astronomy: when true, only astronomy results are accepted",
+    "      (ADS database:astronomy, arXiv astro-ph categories). This is what stops",
+    "      a same-named researcher in another field from appearing."
+  ],
+  "authors": [
+    {
+      "name": "Marc Hon",
+      "orcid": "0000-0003-2400-6960",
+      "name_variants": [
+        "Hon, M.",
+        "Hon, Marc"
+      ],
+      "joined": null,
+      "left": null
+    },
+    {
+      "name": "Riley Clarke",
+      "orcid": "0000-0001-9273-5036",
+      "name_variants": [
+        "Clarke, R.",
+        "Clarke, Riley"
+      ],
+      "joined": "2026-03-01",
+      "left": null
+    },
+    {
+      "name": "Matthew Sung",
+      "orcid": "0009-0002-5172-7923",
+      "name_variants": [
+        "Sung, M.",
+        "Sung, Matthew"
+      ],
+      "joined": "2025-01-01",
+      "left": null
+    },
+    {
+      "name": "Rishi Chandramohan",
+      "orcid": null,
+      "name_variants": [
+        "Chandramohan, R.",
+        "Chandramohan, Rishi"
+      ],
+      "joined": "2025-01-01",
+      "left": null
+    },
+    {
+      "name": "Lin Yihan",
+      "orcid": null,
+      "name_variants": [
+        "Lin, Y.",
+        "Lin, Yihan"
+      ],
+      "joined": "2025-01-01",
+      "left": null
+    },
+    {
+      "name": "Wu Yuzhe",
+      "orcid": null,
+      "name_variants": [
+        "Wu, Y.",
+        "Wu, Yuzhe"
+      ],
+      "joined": "2025-01-01",
+      "left": null
+    },
+    {
+      "name": "Wu Yuxin",
+      "orcid": null,
+      "name_variants": [
+        "Wu, Y.",
+        "Wu, Yuxin"
+      ],
+      "joined": "2025-01-01",
+      "left": null
+    },
+    {
+      "name": "Nguyen Thai Huy",
+      "orcid": null,
+      "name_variants": [
+        "Nguyen, T. H.",
+        "Nguyen, Thai Huy"
+      ],
+      "joined": "2025-01-01",
+      "left": null
+    }
+  ],
+  "require_member_coauthor": true,
+  "restrict_to_astronomy": true
+}

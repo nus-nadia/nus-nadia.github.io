@@ -2,6 +2,22 @@ let allPublications = [];
 let filteredPublications = [];
 let currentPage = 1;
 const itemsPerPage = 5;
+// Topic selections live here rather than in the DOM, since the checkboxes are
+// rebuilt whenever the topic list is repopulated.
+const selectedTopics = new Set();
+
+// Author strings may contain <strong> around NADIA members, so markup has to be
+// removed before searching — otherwise a search for "strong" matches everything.
+function plainText(value) {
+    return (value || "").replace(/<[^>]+>/g, "");
+}
+
+// A link is only rendered when it actually points somewhere. Preprints have no
+// DOI, and older entries use "#" as a placeholder.
+function hasLink(value) {
+    const url = (value || "").trim();
+    return url !== "" && url !== "#";
+}
 
 // Load publications
 async function loadPublications() {
@@ -35,7 +51,7 @@ function renderPublications() {
             pubCard.dataset.year = pub.year;
             pubCard.dataset.topics = pub.tags.join(",").toLowerCase();
             pubCard.dataset.title = pub.title.toLowerCase();
-            pubCard.dataset.authors = pub.authors.toLowerCase();
+            pubCard.dataset.authors = plainText(pub.authors).toLowerCase();
 
             pubCard.innerHTML = `
                 <div class="flex flex-col md:flex-row md:items-center md:justify-between">
@@ -49,8 +65,8 @@ function renderPublications() {
                         </div>
                     </div>
                     <div class="flex space-x-4">
-                        <a href="${pub.pdf_link}" class="text-blue-600 hover:text-blue-800"><i data-feather="file-text"></i> PDF</a>
-                        <a href="${pub.doi_link}" class="text-blue-600 hover:text-blue-800"><i data-feather="external-link"></i> DOI</a>
+                        ${hasLink(pub.pdf_link) ? `<a href="${pub.pdf_link}" class="text-blue-600 hover:text-blue-800"><i data-feather="file-text"></i> PDF</a>` : ""}
+                        ${hasLink(pub.doi_link) ? `<a href="${pub.doi_link}" class="text-blue-600 hover:text-blue-800"><i data-feather="external-link"></i> DOI</a>` : ""}
                     </div>
                 </div>
             `;
@@ -122,39 +138,60 @@ function updatePaginationControls() {
     };
 }
 
-// Populate dropdowns
+// Populate the year dropdown and the topic checkbox list
 function populateFilterOptions() {
     const years = [...new Set(allPublications.map(pub => pub.year))].sort((a, b) => b - a);
     const topics = [...new Set(allPublications.flatMap(pub => pub.tags))].sort();
 
-    const yearFilter = document.getElementById("yearFilter");
-    const topicFilter = document.getElementById("topicFilter");
-
-    yearFilter.innerHTML = `<option value="all">All Years</option>` + 
+    document.getElementById("yearFilter").innerHTML =
+        `<option value="all">All Years</option>` +
         years.map(y => `<option value="${y}">${y}</option>`).join("");
 
-    topicFilter.innerHTML = topics.map(t => `<option value="${t}">${t}</option>`).join("");
+    document.getElementById("topicFilterMenu").innerHTML = topics.map(t => `
+        <label class="flex items-center gap-2 px-2 py-1.5 rounded hover:bg-gray-100 cursor-pointer">
+            <input type="checkbox" class="topic-checkbox h-4 w-4 accent-blue-600" value="${t}">
+            <span class="text-sm text-gray-700">${t}</span>
+        </label>`).join("");
+}
+
+// The button doubles as the summary of what is selected, since the choices are
+// hidden once the dropdown closes.
+function updateTopicFilterLabel() {
+    const label = document.getElementById("topicFilterLabel");
+    if (selectedTopics.size === 0) {
+        label.textContent = "All Topics";
+    } else if (selectedTopics.size === 1) {
+        label.textContent = [...selectedTopics][0];
+    } else {
+        label.textContent = `${selectedTopics.size} topics`;
+    }
 }
 
 // Filtering & search
 function setupFilters() {
     const yearFilter = document.getElementById("yearFilter");
-    const topicFilter = document.getElementById("topicFilter");
+    const topicWrapper = document.getElementById("topicFilter");
+    const topicToggle = document.getElementById("topicFilterToggle");
+    const topicMenu = document.getElementById("topicFilterMenu");
     const resetBtn = document.getElementById("resetFilters");
     const searchInput = document.getElementById("searchInput");
 
     function applyFilters() {
         const selectedYear = yearFilter.value;
-        const selectedTopics = Array.from(topicFilter.selectedOptions).map(opt => opt.value.toLowerCase());
         const keyword = searchInput.value.trim().toLowerCase();
 
         filteredPublications = allPublications.filter(pub => {
+            const tags = pub.tags.map(tag => tag.toLowerCase());
+
             const matchesYear = selectedYear === "all" || pub.year.toString() === selectedYear;
-            const matchesTopic = selectedTopics.length === 0 || selectedTopics.some(t => pub.tags.map(tag => tag.toLowerCase()).includes(t));
+            // Topics are OR-ed: selecting Deep Learning and Transits shows papers
+            // carrying either tag, not only those carrying both.
+            const matchesTopic = selectedTopics.size === 0 ||
+                [...selectedTopics].some(t => tags.includes(t.toLowerCase()));
             const matchesKeyword = keyword === "" ||
                 pub.title.toLowerCase().includes(keyword) ||
-                pub.authors.toLowerCase().includes(keyword) ||
-                pub.tags.some(tag => tag.toLowerCase().includes(keyword));
+                plainText(pub.authors).toLowerCase().includes(keyword) ||
+                tags.some(tag => tag.includes(keyword));
 
             return matchesYear && matchesTopic && matchesKeyword;
         });
@@ -163,17 +200,48 @@ function setupFilters() {
         renderPublications();
     }
 
+    function setTopicMenuOpen(open) {
+        topicMenu.classList.toggle("hidden", !open);
+        topicToggle.setAttribute("aria-expanded", open ? "true" : "false");
+        topicToggle.querySelector(".topic-chevron").classList.toggle("rotate-180", open);
+    }
+
+    topicToggle.addEventListener("click", () => {
+        setTopicMenuOpen(topicMenu.classList.contains("hidden"));
+    });
+
+    topicMenu.addEventListener("change", event => {
+        const checkbox = event.target;
+        if (!checkbox.classList.contains("topic-checkbox")) return;
+
+        if (checkbox.checked) {
+            selectedTopics.add(checkbox.value);
+        } else {
+            selectedTopics.delete(checkbox.value);
+        }
+        updateTopicFilterLabel();
+        applyFilters();
+    });
+
+    // The dropdown has no backdrop, so it closes on an outside click or Escape.
+    document.addEventListener("click", event => {
+        if (!topicWrapper.contains(event.target)) setTopicMenuOpen(false);
+    });
+    document.addEventListener("keydown", event => {
+        if (event.key === "Escape") setTopicMenuOpen(false);
+    });
+
     yearFilter.addEventListener("change", applyFilters);
-    topicFilter.addEventListener("change", applyFilters);
     searchInput.addEventListener("input", applyFilters);
 
     resetBtn.addEventListener("click", () => {
         yearFilter.value = "all";
-        Array.from(topicFilter.options).forEach(opt => (opt.selected = false));
         searchInput.value = "";
-        filteredPublications = [...allPublications];
-        currentPage = 1;
-        renderPublications();
+        selectedTopics.clear();
+        topicMenu.querySelectorAll(".topic-checkbox").forEach(box => (box.checked = false));
+        updateTopicFilterLabel();
+        setTopicMenuOpen(false);
+        applyFilters();
     });
 }
 
