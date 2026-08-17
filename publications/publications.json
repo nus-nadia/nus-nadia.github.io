@@ -1,12 +1,351 @@
 [
   {
+    "title": "Global asteroseismology of 19 000 red giants in the TESS Continuous Viewing Zones",
+    "authors": "Sreenivas, K. R.; Bedding, Timothy R.; Huber, Daniel; et al. (incl. <strong>Hon, Marc</strong>)",
+    "publication_info": "Monthly Notices of the Royal Astronomical Society, 548, stag671",
+    "pdf_link": "https://arxiv.org/pdf/2604.00498",
+    "doi_link": "https://doi.org/10.1093/mnras/stag671",
+    "year": 2026,
+    "tags": [
+      "Machine Learning",
+      "Deep Learning",
+      "Exoplanets",
+      "Astroseismology",
+      "Big Data",
+      "Algorithms"
+    ]
+  },
+  {
+    "title": "A Test of Substellar Evolutionary Models with High-precision Ages from Asteroseismology and Gyrochronology for the Benchmark System HR 7672AB",
+    "authors": "Li, Yaguang; Liu, Michael C.; Dupuy, Trent J.; et al. (incl. <strong>Hon, Marc</strong>)",
+    "publication_info": "The Astrophysical Journal, 1002, 13",
+    "pdf_link": "https://arxiv.org/pdf/2512.06083",
+    "doi_link": "https://doi.org/10.3847/1538-4357/ae4bdb",
+    "year": 2026,
+    "tags": [
+      "Exoplanets",
+      "Exoplanet Discovery",
+      "Astroseismology",
+      "Big Data"
+    ]
+  },
+  {
+    "title": "The Effect of Different Methods for Accounting for α-enhancement on the Asteroseismic Modeling of Metal-poor Stars",
+    "authors": "Lindsay, Christopher J.; Ong, J. M. Joel; Basu, Sarbani; et al. (incl. <strong>Hon, Marc</strong>)",
+    "publication_info": "The Astrophysical Journal, 1000, 232",
+    "pdf_link": "https://arxiv.org/pdf/2603.03450",
+    "doi_link": "https://doi.org/10.3847/1538-4357/ae4d0c",
+    "year": 2026,
+    "tags": [
+      "Astroseismology"
+    ]
+  },
+  {
+    "title": "Searching for Ultracool Dwarfs in Early LSST Data Products",
+    "authors": "Honaker, Easton J.; Gizis, John E.; Aganze, Christian; et al. (incl. <strong>Clarke, Riley W.</strong>)",
+    "publication_info": "The Astrophysical Journal, 1004, 214",
+    "pdf_link": "https://arxiv.org/pdf/2604.08387",
+    "doi_link": "https://doi.org/10.3847/1538-4357/ae6ce9",
+    "year": 2026,
+    "tags": [
+      "Big Data"
+    ]
+  },
+  {
+    "title": "A White-light Flare on the L1 Dwarf WISEP J190648.47+401106.8",
+    "authors": "Southwick, Ashton; Honaker, Easton J.; Gizis, John E.; et al. (incl. <strong>Clarke, Riley W.</strong>)",
+    "publication_info": "Research Notes of the American Astronomical Society, 10, 91",
+    "pdf_link": "",
+    "doi_link": "https://doi.org/10.3847/2515-5172/ae5f75",
+    "year": 2026,
+    "tags": [
+      "Big Data",
+      "Algorithms"
+    ]
+  },
+  {
+    "title": "Precise Asteroseismic Ages for Red Giants in the Helmi Streams",
+    "authors": "Lindsay, Christopher; <strong>Hon, Marc</strong>; Ong, Joel; et al.",
+    "publication_info": "TASC9/KASC16 9th TESS/16th Kepler Asteroseismic Science Consortium, 5",
+    "pdf_link": "",
+    "doi_link": "https://doi.org/10.5281/zenodo.17252867",
+    "year": 2025,
+    "tags": [
+      "Exoplanets",
+      "Astroseismology"
+    ]
+  },
+  {
+    "title": "Detailed Asteroseismic Modeling of 8 α-element Enhanced Metal Poor Stars",
+    "authors": "Lindsay, Christopher; Ong, Joel; Basu, Sarbani; et al. (incl. <strong>Hon, Marc</strong>)",
+    "publication_info": "TASC9/KASC16 9th TESS/16th Kepler Asteroseismic Science Consortium, 102",
+    "pdf_link": "",
+    "doi_link": "https://doi.org/10.5281/zenodo.17252999",
+    "year": 2025,
+    "tags": [
+      "Astroseismology"
+    ]
+  },
+  {
+    "title": "Precise Asteroseismic Ages for the Helmi Streams",
+    "authors": "Lindsay, Christopher J.; <strong>Hon, Marc</strong>; Ong, J. M. Joel; et al.",
+    "publication_info": "The Astrophysical Journal, 989, 189",
+    "pdf_link": "https://arxiv.org/pdf/2507.01091",
+    "doi_link": "https://doi.org/10.3847/1538-4357/adeb56",
+    "year": 2025,
+    "tags": [
+      "Exoplanets",
+      "Astroseismology"
+    ]
+  },
+  {
+    "title": "Modeling Asteroseismic Yields for the Roman Galactic Bulge Time-domain Survey",
+    "authors": "Weiss, Trevor J.; Downing, Noah J.; Pinsonneault, Marc H.; et al. (incl. <strong>Hon, Marc</strong>)",
+    "publication_info": "The Astrophysical Journal, 987, 181",
+    "pdf_link": "https://arxiv.org/pdf/2503.04999",
+    "doi_link": "https://doi.org/10.3847/1538-4357/adde5b",
+    "year": 2025,
+    "tags": [
+      "Exoplanets",
+      "Astroseismology",
+      "Big Data",
+      "Algorithms"
+    ]
+  },
+  {
+    "title": "A Disintegrating Rocky Planet with Prominent Comet-like Tails around a Bright Star",
+    "authors": "<strong>Hon, Marc</strong>; Rappaport, Saul; Shporer, Avi; et al.",
+    "publication_info": "The Astrophysical Journal Letters, 984, L3",
+    "pdf_link": "https://arxiv.org/pdf/2501.05431",
+    "doi_link": "https://doi.org/10.3847/2041-8213/adbf21",
+    "year": 2025,
+    "tags": [
+      "Exoplanets",
+      "Exoplanet Discovery"
+    ]
+  },
+  {
+    "title": "K Dwarf Radius Inflation and a 10 Gyr Spin-down Clock Unveiled through Asteroseismology of HD 219134 from the Keck Planet Finder",
+    "authors": "Li, Yaguang; Huber, Daniel; Ong, J. M. Joel; et al. (incl. <strong>Hon, Marc</strong>)",
+    "publication_info": "The Astrophysical Journal, 984, 125",
+    "pdf_link": "https://arxiv.org/pdf/2502.00971",
+    "doi_link": "https://doi.org/10.3847/1538-4357/adc737",
+    "year": 2025,
+    "tags": [
+      "Exoplanets",
+      "Exoplanet Discovery",
+      "Astroseismology"
+    ]
+  },
+  {
+    "title": "Asteroseismic study of subgiants and giants of the open cluster M67 using Kepler/K2: expanded sample and precise masses",
+    "authors": "Reyes, Claudia; Stello, Dennis; <strong>Hon, Marc</strong>; et al.",
+    "publication_info": "Monthly Notices of the Royal Astronomical Society, 538, 1720",
+    "pdf_link": "https://arxiv.org/pdf/2502.18714",
+    "doi_link": "https://doi.org/10.1093/mnras/staf353",
+    "year": 2025,
+    "tags": [
+      "Astroseismology",
+      "Big Data"
+    ]
+  },
+  {
+    "title": "Acoustic modes in M67 cluster stars trace deepening convective envelopes",
+    "authors": "Reyes, Claudia; Stello, Dennis; Ong, Joel; et al. (incl. <strong>Hon, Marc</strong>)",
+    "publication_info": "Nature, 640, 338",
+    "pdf_link": "https://arxiv.org/pdf/2504.01828",
+    "doi_link": "https://doi.org/10.1038/s41586-025-08760-2",
+    "year": 2025,
+    "tags": [
+      "Astroseismology"
+    ]
+  },
+  {
+    "title": "APOKASC-3: The Third Joint Spectroscopic and Asteroseismic Catalog for Evolved Stars in the Kepler Fields",
+    "authors": "Pinsonneault, Marc H.; Zinn, Joel C.; Tayar, Jamie; et al. (incl. <strong>Hon, Marc</strong>)",
+    "publication_info": "The Astrophysical Journal Supplement Series, 276, 69",
+    "pdf_link": "https://arxiv.org/pdf/2410.00102",
+    "doi_link": "https://doi.org/10.3847/1538-4365/ad9fef",
+    "year": 2025,
+    "tags": [
+      "Astroseismology",
+      "Big Data"
+    ]
+  },
+  {
+    "title": "Benchmarking the spectroscopic masses of 249 evolved stars using asteroseismology with TESS",
+    "authors": "Malla, Sai Prathyusha; Stello, Dennis; Montet, Benjamin T.; et al. (incl. <strong>Hon, Marc</strong>)",
+    "publication_info": "Monthly Notices of the Royal Astronomical Society, 534, 1775",
+    "pdf_link": "https://arxiv.org/pdf/2409.11736",
+    "doi_link": "https://doi.org/10.1093/mnras/stae2179",
+    "year": 2024,
+    "tags": [
+      "Exoplanets",
+      "Astroseismology",
+      "Big Data"
+    ]
+  },
+  {
+    "title": "Asteroseismology of the Nearby K Dwarf σ Draconis Using the Keck Planet Finder and TESS",
+    "authors": "<strong>Hon, Marc</strong>; Huber, Daniel; Li, Yaguang; et al.",
+    "publication_info": "The Astrophysical Journal, 975, 147",
+    "pdf_link": "https://arxiv.org/pdf/2407.21234",
+    "doi_link": "https://doi.org/10.3847/1538-4357/ad76a9",
+    "year": 2024,
+    "tags": [
+      "Exoplanets",
+      "Exoplanet Discovery",
+      "Astroseismology",
+      "Big Data"
+    ]
+  },
+  {
+    "title": "Stellar Models are Reliable at Low Metallicity: An Asteroseismic Age for the Ancient Very Metal-poor Star KIC 8144907",
+    "authors": "Huber, Daniel; Slumstrup, Ditte; <strong>Hon, Marc</strong>; et al.",
+    "publication_info": "The Astrophysical Journal, 975, 19",
+    "pdf_link": "https://arxiv.org/pdf/2407.17566",
+    "doi_link": "https://doi.org/10.3847/1538-4357/ad7110",
+    "year": 2024,
+    "tags": [
+      "Astroseismology",
+      "Big Data"
+    ]
+  },
+  {
+    "title": "σ Draconis: The coolest nearby star with asteroseismology from the Keck Planet Finder and TESS",
+    "authors": "<strong>Hon, Marc</strong>; Huber, Daniel; Li, Yaguang; et al.",
+    "publication_info": "TESS Science Conference III, 56",
+    "pdf_link": "",
+    "doi_link": "https://doi.org/10.5281/zenodo.13119239",
+    "year": 2024,
+    "tags": [
+      "Exoplanets",
+      "Astroseismology",
+      "Big Data"
+    ]
+  },
+  {
+    "title": "A New Catalog of 100,000 Variable TESS A-F Stars Reveals a Correlation between δ Scuti Pulsator Fraction and Stellar Rotation",
+    "authors": "Gootkin, Keyan; <strong>Hon, Marc</strong>; Huber, Daniel; et al.",
+    "publication_info": "The Astrophysical Journal, 972, 137",
+    "pdf_link": "https://arxiv.org/pdf/2405.19388",
+    "doi_link": "https://doi.org/10.3847/1538-4357/ad5282",
+    "year": 2024,
+    "tags": [
+      "Exoplanets",
+      "Exoplanet Discovery",
+      "Big Data",
+      "Algorithms"
+    ]
+  },
+  {
+    "title": "The Gasing Pangkah Collaboration. I. Asteroseismic Identification and Characterization of a Rapidly Rotating Engulfment Candidate",
+    "authors": "Ong, J. M. Joel; <strong>Hon, Marc Teng Yen</strong>; Soares-Furtado, Melinda; et al.",
+    "publication_info": "The Astrophysical Journal, 966, 42",
+    "pdf_link": "https://arxiv.org/pdf/2402.16971",
+    "doi_link": "https://doi.org/10.3847/1538-4357/ad2ea2",
+    "year": 2024,
+    "tags": [
+      "Exoplanets",
+      "Astroseismology",
+      "Big Data"
+    ]
+  },
+  {
+    "title": "The role of carbon in red giant spectro-seismology",
+    "authors": "Banks, Kirsten A.; Martell, Sarah L.; Tinney, C. G.; et al. (incl. <strong>Hon, Marc</strong>)",
+    "publication_info": "Monthly Notices of the Royal Astronomical Society, 529, 3912",
+    "pdf_link": "https://arxiv.org/pdf/2401.13235",
+    "doi_link": "https://doi.org/10.1093/mnras/stae652",
+    "year": 2024,
+    "tags": [
+      "Astroseismology",
+      "Big Data",
+      "Algorithms"
+    ]
+  },
+  {
+    "title": "The APO-K2 Catalog. I.  7500 Red Giants with Fundamental Stellar Parameters from APOGEE DR17 Spectroscopy and K2-GAP Asteroseismology",
+    "authors": "Schonhut-Stasik, Jessica; Zinn, Joel C.; Stassun, Keivan G.; et al. (incl. <strong>Hon, Marc</strong>)",
+    "publication_info": "The Astronomical Journal, 167, 50",
+    "pdf_link": "https://arxiv.org/pdf/2304.10654",
+    "doi_link": "https://doi.org/10.3847/1538-3881/ad0b13",
+    "year": 2024,
+    "tags": [
+      "Astroseismology",
+      "Big Data"
+    ]
+  },
+  {
+    "title": "Two Long-period Giant Planets around Two Giant Stars: HD 112570 and HD 154391",
+    "authors": "Xiao, Guang-Yao; Teng, Huan-Yu; Zhou, Jianzhao; et al. (incl. <strong>Hon, Marc</strong>)",
+    "publication_info": "The Astronomical Journal, 167, 59",
+    "pdf_link": "https://arxiv.org/pdf/2312.01388",
+    "doi_link": "https://doi.org/10.3847/1538-3881/ad11de",
+    "year": 2024,
+    "tags": [
+      "Exoplanets",
+      "Exoplanet Discovery"
+    ]
+  },
+  {
     "title": "Flow-Based Generative Emulation of Grids of Stellar Evolutionary Models",
     "authors": "Hon, M.; Li, Y.; Ong, J.",
     "publication_info": "The Astrophysical Journal, 973, 154",
     "pdf_link": "#",
     "doi_link": "https://doi.org/10.3847/1538-4357/ad6320",
     "year": 2024,
-    "tags": ["Machine Learning"]
+    "tags": [
+      "Machine Learning"
+    ]
+  },
+  {
+    "title": "A unified exploration of the chronology of the Galaxy",
+    "authors": "Stokholm, Amalie; Aguirre Børsen-Koch, Víctor; Stello, Dennis; et al. (incl. <strong>Hon, Marc</strong>)",
+    "publication_info": "Monthly Notices of the Royal Astronomical Society, 524, 1634",
+    "pdf_link": "https://arxiv.org/pdf/2306.13132",
+    "doi_link": "https://doi.org/10.1093/mnras/stad1912",
+    "year": 2023,
+    "tags": [
+      "Machine Learning",
+      "Astroseismology"
+    ]
+  },
+  {
+    "title": "Mixed-mode Ensemble Asteroseismology of Low-luminosity Kepler Red Giants",
+    "authors": "Kuszlewicz, James S.; <strong>Hon, Marc</strong>; Huber, Daniel",
+    "publication_info": "The Astrophysical Journal, 954, 152",
+    "pdf_link": "https://arxiv.org/pdf/2307.06482",
+    "doi_link": "https://doi.org/10.3847/1538-4357/ace598",
+    "year": 2023,
+    "tags": [
+      "Astroseismology",
+      "Big Data"
+    ]
+  },
+  {
+    "title": "A prescription for the asteroseismic surface correction",
+    "authors": "Li, Yaguang; Bedding, Timothy R.; Stello, Dennis; et al. (incl. <strong>Hon, Marc</strong>)",
+    "publication_info": "Monthly Notices of the Royal Astronomical Society, 523, 916",
+    "pdf_link": "https://arxiv.org/pdf/2208.01176",
+    "doi_link": "https://doi.org/10.1093/mnras/stad1445",
+    "year": 2023,
+    "tags": [
+      "Astroseismology"
+    ]
+  },
+  {
+    "title": "Revisiting the Red Giant Branch Hosts KOI-3886 and ι Draconis. Detailed Asteroseismic Modeling and Consolidated Stellar Parameters",
+    "authors": "Campante, Tiago L.; Li, Tanda; Ong, J. M. Joel; et al. (incl. <strong>Hon, Marc</strong>)",
+    "publication_info": "The Astronomical Journal, 165, 214",
+    "pdf_link": "https://arxiv.org/pdf/2304.01570",
+    "doi_link": "https://doi.org/10.3847/1538-3881/acc9c1",
+    "year": 2023,
+    "tags": [
+      "Exoplanets",
+      "Astroseismology",
+      "Big Data"
+    ]
   },
   {
     "title": "A close-in giant planet escaping engulfment by its star",
@@ -15,7 +354,164 @@
     "pdf_link": "#",
     "doi_link": "https://doi.org/10.1038/s41586-023-06029-0",
     "year": 2023,
-    "tags": ["Exoplanets", "Exoplanet Discovery"]
+    "tags": [
+      "Exoplanets",
+      "Exoplanet Discovery"
+    ]
+  },
+  {
+    "title": "The K2 Galactic Archaeology Program: Overview, target selection, and survey properties",
+    "authors": "Sharma, Sanjib; Stello, Dennis; Zinn, Joel C.; et al. (incl. <strong>Hon, Marc</strong>)",
+    "publication_info": "Monthly Notices of the Royal Astronomical Society, 517, 1970",
+    "pdf_link": "https://arxiv.org/pdf/2109.12173",
+    "doi_link": "https://doi.org/10.1093/mnras/stac2031",
+    "year": 2022,
+    "tags": [
+      "Big Data"
+    ]
+  },
+  {
+    "title": "HD-TESS: An Asteroseismic Catalog of Bright Red Giants within TESS Continuous Viewing Zones",
+    "authors": "<strong>Hon, Marc</strong>; Kuszlewicz, James S.; Huber, Daniel; et al.",
+    "publication_info": "The Astronomical Journal, 164, 135",
+    "pdf_link": "https://arxiv.org/pdf/2208.06478",
+    "doi_link": "https://doi.org/10.3847/1538-3881/ac8931",
+    "year": 2022,
+    "tags": [
+      "Exoplanets",
+      "Astroseismology",
+      "Big Data"
+    ]
+  },
+  {
+    "title": "Age determination of galaxy merger remnant stars using asteroseismology",
+    "authors": "Borre, Camilla C.; Aguirre Børsen-Koch, Víctor; Helmi, Amina; et al. (incl. <strong>Hon, Marc</strong>)",
+    "publication_info": "Monthly Notices of the Royal Astronomical Society, 514, 2527",
+    "pdf_link": "https://arxiv.org/pdf/2111.01669",
+    "doi_link": "https://doi.org/10.1093/mnras/stac1498",
+    "year": 2022,
+    "tags": [
+      "Exoplanets",
+      "Exoplanet Discovery",
+      "Astroseismology",
+      "Big Data"
+    ]
+  },
+  {
+    "title": "TESS asteroseismology of the Kepler red giants",
+    "authors": "Stello, Dennis; Saunders, Nicholas; Grunblatt, Sam; et al. (incl. <strong>Hon, Marc</strong>)",
+    "publication_info": "Monthly Notices of the Royal Astronomical Society, 512, 1677",
+    "pdf_link": "https://arxiv.org/pdf/2107.05831",
+    "doi_link": "https://doi.org/10.1093/mnras/stac414",
+    "year": 2022,
+    "tags": [
+      "Astroseismology",
+      "Big Data"
+    ]
+  },
+  {
+    "title": "Vetting asteroseismic ∆ν measurements using neural networks",
+    "authors": "Reyes, Claudia; Stello, Dennis; <strong>Hon, Marc</strong>; et al.",
+    "publication_info": "Monthly Notices of the Royal Astronomical Society, 511, 5578",
+    "pdf_link": "https://arxiv.org/pdf/2202.05478",
+    "doi_link": "https://doi.org/10.1093/mnras/stac445",
+    "year": 2022,
+    "tags": [
+      "Machine Learning",
+      "Deep Learning",
+      "Astroseismology",
+      "Big Data"
+    ]
+  },
+  {
+    "title": "The K2 Galactic Archaeology Program Data Release 3: Age-abundance Patterns in C1-C8 and C10-C18",
+    "authors": "Zinn, Joel C.; Stello, Dennis; Elsworth, Yvonne; et al. (incl. <strong>Hon, Marc</strong>)",
+    "publication_info": "The Astrophysical Journal, 926, 191",
+    "pdf_link": "https://arxiv.org/pdf/2108.05455",
+    "doi_link": "https://doi.org/10.3847/1538-4357/ac2c83",
+    "year": 2022,
+    "tags": [
+      "Machine Learning",
+      "Astroseismology",
+      "Big Data"
+    ]
+  },
+  {
+    "title": "TESS Data for Asteroseismology (T'DA) Stellar Variability Classification Pipeline: Setup and Application to the Kepler Q9 Data",
+    "authors": "Audenaert, J.; Kuszlewicz, J. S.; Handberg, R.; et al. (incl. <strong>Hon, M.</strong>)",
+    "publication_info": "The Astronomical Journal, 162, 209",
+    "pdf_link": "https://arxiv.org/pdf/2107.06301",
+    "doi_link": "https://doi.org/10.3847/1538-3881/ac166a",
+    "year": 2021,
+    "tags": [
+      "Machine Learning",
+      "Exoplanets",
+      "Astroseismology",
+      "Big Data",
+      "Algorithms"
+    ]
+  },
+  {
+    "title": "Asteroseismology of iota Draconis and Discovery of an Additional Long-period Companion",
+    "authors": "Hill, Michelle L.; Kane, Stephen R.; Campante, Tiago L.; et al. (incl. <strong>Hon, Marc</strong>)",
+    "publication_info": "The Astronomical Journal, 162, 211",
+    "pdf_link": "https://arxiv.org/pdf/2107.13583",
+    "doi_link": "https://doi.org/10.3847/1538-3881/ac1b31",
+    "year": 2021,
+    "tags": [
+      "Exoplanets",
+      "Exoplanet Discovery",
+      "Astroseismology",
+      "Big Data"
+    ]
+  },
+  {
+    "title": "Fundamental relations for the velocity dispersion of stars in the Milky Way",
+    "authors": "Sharma, Sanjib; Hayden, Michael R.; Bland-Hawthorn, Joss; et al. (incl. <strong>Hon, Marc</strong>)",
+    "publication_info": "Monthly Notices of the Royal Astronomical Society, 506, 1761",
+    "pdf_link": "https://arxiv.org/pdf/2004.06556",
+    "doi_link": "https://doi.org/10.1093/mnras/stab1086",
+    "year": 2021,
+    "tags": [
+      "Big Data"
+    ]
+  },
+  {
+    "title": "The GALAH survey: a census of lithium-rich giant stars",
+    "authors": "Martell, Sarah L.; Simpson, Jeffrey D.; Balasubramaniam, Adithya G.; et al. (incl. <strong>Hon, Marc</strong>)",
+    "publication_info": "Monthly Notices of the Royal Astronomical Society, 505, 5340",
+    "pdf_link": "https://arxiv.org/pdf/2006.02106",
+    "doi_link": "https://doi.org/10.1093/mnras/stab1356",
+    "year": 2021,
+    "tags": [
+      "Astroseismology",
+      "Big Data"
+    ]
+  },
+  {
+    "title": "Age-dating Red Giant Stars Associated with Galactic Disk and Halo Substructures",
+    "authors": "Grunblatt, Samuel K.; Zinn, Joel C.; Price-Whelan, Adrian M.; et al. (incl. <strong>Hon, Marc</strong>)",
+    "publication_info": "The Astrophysical Journal, 916, 88",
+    "pdf_link": "https://arxiv.org/pdf/2105.10505",
+    "doi_link": "https://doi.org/10.3847/1538-4357/ac0532",
+    "year": 2021,
+    "tags": [
+      "Astroseismology"
+    ]
+  },
+  {
+    "title": "Asteroseismology of the Red-giant Hosts KOI-3886 and iota Draconis",
+    "authors": "Campante, Tiago L.; Li, Tanda; Ong, J. M. Joel; et al. (incl. <strong>Hon, Marc</strong>)",
+    "publication_info": "Posters from the TESS Science Conference II (TSC2), 84",
+    "pdf_link": "",
+    "doi_link": "https://doi.org/10.5281/zenodo.5127814",
+    "year": 2021,
+    "tags": [
+      "Exoplanets",
+      "Exoplanet Discovery",
+      "Astroseismology",
+      "Big Data"
+    ]
   },
   {
     "title": "A ’Quick Look’ at All-Sky Galactic Archeology with TESS: 158,000 Oscillating Red Giants from the MIT Quick-Look Pipeline",
@@ -24,7 +520,218 @@
     "pdf_link": "#",
     "doi_link": "https://doi.org/10.3847/1538-4357/ac14b1",
     "year": 2021,
-    "tags": ["Exoplanets", "Exoplanet Discovery"]
+    "tags": [
+      "Exoplanets",
+      "Exoplanet Discovery"
+    ]
+  },
+  {
+    "title": "The K2 Galactic Archaeology Program Data Release 2: Asteroseismic Results from Campaigns 4, 6, and 7",
+    "authors": "Zinn, Joel C.; Stello, Dennis; Elsworth, Yvonne; et al. (incl. <strong>Hon, Marc</strong>)",
+    "publication_info": "The Astrophysical Journal Supplement Series, 251, 23",
+    "pdf_link": "https://arxiv.org/pdf/2012.04051",
+    "doi_link": "https://doi.org/10.3847/1538-4365/abbee3",
+    "year": 2020,
+    "tags": [
+      "Machine Learning",
+      "Astroseismology",
+      "Big Data",
+      "Algorithms"
+    ]
+  },
+  {
+    "title": "Asteroseismic inference of subgiant evolutionary parameters with deep learning",
+    "authors": "<strong>Hon, Marc</strong>; Bellinger, Earl P.; Hekker, Saskia; et al.",
+    "publication_info": "Monthly Notices of the Royal Astronomical Society, 499, 2445",
+    "pdf_link": "https://arxiv.org/pdf/2009.06972",
+    "doi_link": "https://doi.org/10.1093/mnras/staa2853",
+    "year": 2020,
+    "tags": [
+      "Machine Learning",
+      "Deep Learning",
+      "Astroseismology",
+      "Big Data"
+    ]
+  },
+  {
+    "title": "Detection and Characterization of Oscillating Red Giants: First Results from the TESS Satellite",
+    "authors": "Silva Aguirre, Víctor; Stello, Dennis; Stokholm, Amalie; et al. (incl. <strong>Hon, Marc</strong>)",
+    "publication_info": "The Astrophysical Journal Letters, 889, L34",
+    "pdf_link": "https://arxiv.org/pdf/1912.07604",
+    "doi_link": "https://doi.org/10.3847/2041-8213/ab6443",
+    "year": 2020,
+    "tags": [
+      "Exoplanets",
+      "Astroseismology",
+      "Big Data"
+    ]
+  },
+  {
+    "title": "Giant Planet Occurrence within 0.2 au of Low-luminosity Red Giant Branch Stars with K2",
+    "authors": "Grunblatt, Samuel K.; Huber, Daniel; Gaidos, Eric; et al. (incl. <strong>Hon, Marc</strong>)",
+    "publication_info": "The Astronomical Journal, 158, 227",
+    "pdf_link": "https://arxiv.org/pdf/1910.05346",
+    "doi_link": "https://doi.org/10.3847/1538-3881/ab4c35",
+    "year": 2019,
+    "tags": [
+      "Exoplanets",
+      "Astroseismology"
+    ]
+  },
+  {
+    "title": "The K2-HERMES Survey: age and metallicity of the thick disc",
+    "authors": "Sharma, Sanjib; Stello, Dennis; Bland-Hawthorn, Joss; et al. (incl. <strong>Hon, Marc</strong>)",
+    "publication_info": "Monthly Notices of the Royal Astronomical Society, 490, 5335",
+    "pdf_link": "https://arxiv.org/pdf/1904.12444",
+    "doi_link": "https://doi.org/10.1093/mnras/stz2861",
+    "year": 2019,
+    "tags": [
+      "Astroseismology",
+      "Big Data"
+    ]
+  },
+  {
+    "title": "Insights from the APOKASC determination of the evolutionary state of red-giant stars by consolidation of different methods",
+    "authors": "Elsworth, Yvonne; Hekker, Saskia; Johnson, Jennifer A.; et al. (incl. <strong>Hon, Marc</strong>)",
+    "publication_info": "Monthly Notices of the Royal Astronomical Society, 489, 4641",
+    "pdf_link": "https://arxiv.org/pdf/1909.06266",
+    "doi_link": "https://doi.org/10.1093/mnras/stz2356",
+    "year": 2019,
+    "tags": [
+      "Machine Learning",
+      "Deep Learning",
+      "Astroseismology",
+      "Big Data"
+    ]
+  },
+  {
+    "title": "TESS Asteroseismology of the Known Red-giant Host Stars HD 212771 and HD 203949",
+    "authors": "Campante, Tiago L.; Corsaro, Enrico; Lund, Mikkel N.; et al. (incl. <strong>Hon, Marc</strong>)",
+    "publication_info": "The Astrophysical Journal, 885, 31",
+    "pdf_link": "https://arxiv.org/pdf/1909.05961",
+    "doi_link": "https://doi.org/10.3847/1538-4357/ab44a8",
+    "year": 2019,
+    "tags": [
+      "Exoplanets",
+      "Exoplanet Discovery",
+      "Astroseismology",
+      "Big Data"
+    ]
+  },
+  {
+    "title": "Acoustic oscillations and dynamo action in the G8 sub-giant EK Eridani",
+    "authors": "Bonanno, A.; Corsaro, E.; Del Sordo, F.; et al. (incl. <strong>Hon, M.</strong>)",
+    "publication_info": "Astronomy and Astrophysics, 628, A106",
+    "pdf_link": "https://arxiv.org/pdf/1907.01338",
+    "doi_link": "https://doi.org/10.1051/0004-6361/201935834",
+    "year": 2019,
+    "tags": [
+      "Exoplanets",
+      "Exoplanet Discovery",
+      "Astroseismology",
+      "Big Data"
+    ]
+  },
+  {
+    "title": "A search for red giant solar-like oscillations in all Kepler data",
+    "authors": "<strong>Hon, Marc</strong>; Stello, Dennis; García, Rafael A.; et al.",
+    "publication_info": "Monthly Notices of the Royal Astronomical Society, 485, 5616",
+    "pdf_link": "https://arxiv.org/pdf/1903.00115",
+    "doi_link": "https://doi.org/10.1093/mnras/stz622",
+    "year": 2019,
+    "tags": [
+      "Astroseismology",
+      "Big Data",
+      "Algorithms"
+    ]
+  },
+  {
+    "title": "A Hot Saturn Orbiting an Oscillating Late Subgiant Discovered by TESS",
+    "authors": "Huber, Daniel; Chaplin, William J.; Chontos, Ashley; et al. (incl. <strong>Hon, Marc</strong>)",
+    "publication_info": "The Astronomical Journal, 157, 245",
+    "pdf_link": "https://arxiv.org/pdf/1901.01643",
+    "doi_link": "https://doi.org/10.3847/1538-3881/ab1488",
+    "year": 2019,
+    "tags": [
+      "Exoplanets",
+      "Astroseismology",
+      "Big Data"
+    ]
+  },
+  {
+    "title": "Asteroseismology of the Hyades red giant and planet host ∊ Tauri",
+    "authors": "Arentoft, T.; Grundahl, F.; White, T. R.; et al. (incl. <strong>Hon, M.</strong>)",
+    "publication_info": "Astronomy and Astrophysics, 622, A190",
+    "pdf_link": "https://arxiv.org/pdf/1901.06187",
+    "doi_link": "https://doi.org/10.1051/0004-6361/201834690",
+    "year": 2019,
+    "tags": [
+      "Exoplanets",
+      "Exoplanet Discovery",
+      "Astroseismology",
+      "Big Data"
+    ]
+  },
+  {
+    "title": "Asteroseismology of 16,000 Kepler Red Giants: Global Oscillation Parameters, Masses, and Radii",
+    "authors": "Yu, Jie; Huber, Daniel; Bedding, Timothy R.; et al. (incl. <strong>Hon, Marc</strong>)",
+    "publication_info": "The Astrophysical Journal Supplement Series, 236, 42",
+    "pdf_link": "https://arxiv.org/pdf/1802.04455",
+    "doi_link": "https://doi.org/10.3847/1538-4365/aaaf74",
+    "year": 2018,
+    "tags": [
+      "Astroseismology",
+      "Big Data"
+    ]
+  },
+  {
+    "title": "Mass and age of red giant branch stars observed with LAMOST and Kepler",
+    "authors": "<strong>Wu, Yaqian</strong>; Xiang, Maosheng; Bi, Shaolan; et al.",
+    "publication_info": "Monthly Notices of the Royal Astronomical Society, 475, 3633",
+    "pdf_link": "https://arxiv.org/pdf/1712.09779",
+    "doi_link": "https://doi.org/10.1093/mnras/stx3296",
+    "year": 2018,
+    "tags": [
+      "Machine Learning",
+      "Astroseismology",
+      "Big Data"
+    ]
+  },
+  {
+    "title": "Confirming chemical clocks: asteroseismic age dissection of the Milky Way disc(s)",
+    "authors": "Silva Aguirre, V.; Bojsen-Hansen, M.; Slumstrup, D.; et al. (incl. <strong>Hon, M.</strong>)",
+    "publication_info": "Monthly Notices of the Royal Astronomical Society, 475, 5487",
+    "pdf_link": "https://arxiv.org/pdf/1710.09847",
+    "doi_link": "https://doi.org/10.1093/mnras/sty150",
+    "year": 2018,
+    "tags": [
+      "Astroseismology",
+      "Big Data"
+    ]
+  },
+  {
+    "title": "The K2-HERMES Survey. I. Planet-candidate Properties from K2 Campaigns 1-3",
+    "authors": "Wittenmyer, Robert A.; Sharma, Sanjib; Stello, Dennis; et al. (incl. <strong>Hon, Marc</strong>)",
+    "publication_info": "The Astronomical Journal, 155, 84",
+    "pdf_link": "https://arxiv.org/pdf/1712.06774",
+    "doi_link": "https://doi.org/10.3847/1538-3881/aaa3e4",
+    "year": 2018,
+    "tags": [
+      "Exoplanets"
+    ]
+  },
+  {
+    "title": "The TESS-HERMES survey data release 1: high-resolution spectroscopy of the TESS southern continuous viewing zone",
+    "authors": "Sharma, Sanjib; Stello, Dennis; Buder, Sven; et al. (incl. <strong>Hon, Marc</strong>)",
+    "publication_info": "Monthly Notices of the Royal Astronomical Society, 473, 2004",
+    "pdf_link": "https://arxiv.org/pdf/1707.05753",
+    "doi_link": "https://doi.org/10.1093/mnras/stx2582",
+    "year": 2018,
+    "tags": [
+      "Exoplanets",
+      "Astroseismology",
+      "Big Data"
+    ]
   },
   {
     "title": "Detecting Solar-like Oscillations in Red Giants with Deep Learning",
@@ -33,7 +740,11 @@
     "pdf_link": "#",
     "doi_link": "https://doi.org/10.3847/1538-4357/aabfdb",
     "year": 2018,
-    "tags": ["Astroseismology", "Machine Learning", "Deep Learning"]
+    "tags": [
+      "Astroseismology",
+      "Machine Learning",
+      "Deep Learning"
+    ]
   },
   {
     "title": "Deep learning classification in asteroseismology using an improved neural network: results on 15,000 Kepler red giants and applications to K2 and TESS data",
@@ -42,6 +753,26 @@
     "pdf_link": "#",
     "doi_link": "#",
     "year": 2018,
-    "tags": ["Astroseismology", "Machine Learning", "Deep Learning", "Big Data", "Algorithms"]
+    "tags": [
+      "Astroseismology",
+      "Machine Learning",
+      "Deep Learning",
+      "Big Data",
+      "Algorithms"
+    ]
+  },
+  {
+    "title": "Deep learning classification in asteroseismology",
+    "authors": "<strong>Hon, Marc</strong>; Stello, Dennis; Yu, Jie",
+    "publication_info": "Monthly Notices of the Royal Astronomical Society, 469, 4578",
+    "pdf_link": "https://arxiv.org/pdf/1705.06405",
+    "doi_link": "https://doi.org/10.1093/mnras/stx1174",
+    "year": 2017,
+    "tags": [
+      "Machine Learning",
+      "Deep Learning",
+      "Astroseismology",
+      "Big Data"
+    ]
   }
 ]
