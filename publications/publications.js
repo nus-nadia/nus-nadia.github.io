@@ -65,8 +65,8 @@ function renderPublications() {
                         </div>
                     </div>
                     <div class="flex space-x-4">
-                        ${hasLink(pub.pdf_link) ? `<a href="${pub.pdf_link}" class="text-blue-600 hover:text-blue-800"><i data-feather="file-text"></i> PDF</a>` : ""}
-                        ${hasLink(pub.doi_link) ? `<a href="${pub.doi_link}" class="text-blue-600 hover:text-blue-800"><i data-feather="external-link"></i> DOI</a>` : ""}
+                        ${hasLink(pub.pdf_link) ? `<a href="${pub.pdf_link}" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-800"><i data-feather="file-text"></i> PDF</a>` : ""}
+                        ${hasLink(pub.doi_link) ? `<a href="${pub.doi_link}" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-800"><i data-feather="external-link"></i> DOI</a>` : ""}
                     </div>
                 </div>
             `;
